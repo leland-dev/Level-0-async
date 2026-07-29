@@ -1,5 +1,5 @@
 <meta charset="utf-8">
-<title>Introduction to AI Tools — Lesson 1</title>
+<title>Introduction to AI Tools · Lesson 1</title>
 <style>
   :root {
     --yellow: #FFD96F;
@@ -135,14 +135,6 @@
   p { margin: 0 0 14px; color: var(--ink); max-width: 66ch; }
   .dek { color: var(--ink-soft); font-size: 16.5px; }
 
-  .objectives { list-style: none; margin: 24px 0 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
-  .objectives li {
-    background: var(--surface-raised); border: 1px solid var(--stroke);
-    border-radius: 12px; padding: 12px 16px;
-  }
-  .objectives label { display: flex; align-items: flex-start; gap: 10px; cursor: pointer; font-size: 14.5px; color: var(--ink-soft); }
-  .objectives input[type="checkbox"] { margin-top: 2px; accent-color: var(--yellow-hover); width: 16px; height: 16px; flex-shrink: 0; }
-
   .callout-list { list-style: none; margin: 22px 0 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
   .callout-list li { position: relative; padding-left: 20px; font-size: 14.5px; color: var(--ink-soft); }
   .callout-list li::before { content: "—"; position: absolute; left: 0; color: var(--gray); }
@@ -174,7 +166,7 @@
   /* build page: paste-to-file workflow animation */
   .wf-window { border: 1px solid var(--stroke-strong); border-radius: 14px; overflow: hidden; background: var(--surface); }
   .wf-window-bar { display: flex; align-items: center; gap: 6px; padding: 10px 14px; background: var(--surface-sunk); border-bottom: 1px solid var(--stroke); }
-  .wf-window-bar span { width: 9px; height: 9px; border-radius: 50%; background: var(--stroke-strong); display: inline-block; }
+  .wf-window-bar .wf-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--stroke-strong); display: inline-block; }
   .wf-window-title { margin-left: 8px; font-size: 12px; color: var(--gray); white-space: nowrap; flex: none; }
   .wf-body { min-height: 140px; padding: 16px; display: flex; flex-direction: column; gap: 10px; justify-content: flex-end; }
   .wf-bubble-user {
@@ -258,6 +250,13 @@
   .quiz button.incorrect { border-color: var(--red); background: color-mix(in srgb, var(--red) 12%, var(--surface-raised)); }
   .quiz button:disabled { cursor: default; }
   .quiz-feedback { margin-top: 10px; font-size: 14px; min-height: 20px; color: var(--ink-soft); }
+  .quiz-badge {
+    display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;
+    background: var(--yellow); color: #1a1400; padding: 4px 12px; border-radius: 999px; margin-bottom: 14px;
+  }
+
+  /* tie-back callout */
+  .tie-back { font-size: 13.5px; color: var(--ink-soft); border-left: 2px solid var(--yellow-hover); padding-left: 14px; margin: 20px 0; }
 
   /* prompt boxes */
   .prompt-box { background: var(--ink); border-radius: 14px; padding: 18px 20px; margin: 14px 0; }
@@ -287,12 +286,7 @@
   .step-done input { accent-color: var(--yellow-hover); width: 15px; height: 15px; }
 
   /* wrap-up */
-  #reflection {
-    width: 100%; min-height: 90px; font-family: var(--font-body); font-size: 14.5px;
-    padding: 14px; border-radius: 12px; border: 1px solid var(--stroke-strong);
-    background: var(--surface-raised); color: var(--ink); resize: vertical; margin-bottom: 14px;
-  }
-  .wrap-actions { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+  .wrap-actions { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-top: 22px; }
   .save-note { font-size: 12.5px; color: var(--gray); }
   .next-lesson {
     margin-top: 28px; padding: 18px 20px; border-radius: 14px;
@@ -307,8 +301,7 @@
     background: var(--surface-sunk); border-top: 1px solid var(--stroke);
     padding: 14px 0;
   }
-  .nav-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-  .nav-spacer { flex: 1; }
+  .nav-row { display: flex; align-items: center; justify-content: center; gap: 18px; }
 </style>
 
 <div class="shell">
@@ -328,11 +321,11 @@
     <section class="panel" data-page="0">
       <p class="eyebrow">Lesson 1 · Introduction to AI tools</p>
       <h1>Learn how AI thinks, then build something with it</h1>
-      <p class="dek">This lesson is self-paced, one screen at a time. Read the concept, try the interactive demo, then do a guided build in a second tab using your own AI tool — Claude, ChatGPT, or Gemini. Everything is saved on this device, so you can close the tab and pick up right where you left off.</p>
-      <ul class="objectives" id="objectives">
-        <li><label><input type="checkbox" id="obj-concept" class="track"> Understand how large language models predict text, not look it up</label></li>
-        <li><label><input type="checkbox" id="obj-demo" class="track"> Try the next-word prediction demo yourself</label></li>
-        <li><label><input type="checkbox" id="obj-build" class="track"> Create a real document with AI using a tested prompt</label></li>
+      <p class="viz-label" style="margin-top: 28px;">What you'll learn</p>
+      <ul class="callout-list">
+        <li>How large language models actually predict text, not look it up</li>
+        <li>What next-word prediction looks like, live</li>
+        <li>How to build a real document with AI, using a working prompt</li>
       </ul>
     </section>
 
@@ -340,20 +333,19 @@
     <section class="panel" data-page="1">
       <p class="eyebrow">Concept</p>
       <h2>How large language models work</h2>
-      <p>AI is powered by something called a large language model, or LLM. Unlike a search engine, when you type a message to AI, the model doesn't look anything up. It generates a response by predicting what's most likely to come next, based on everything that came before it.</p>
-      <p>LLMs are trained on a staggering amount of text — books, websites, articles, code, conversations, basically the internet. Through that training, the model learns patterns: which words tend to follow which others, in which contexts, at what level of formality.</p>
-      <p>This is how AI tools write code, draft emails, summarize documents, and answer questions. Not because they understand these things the way a human expert does, but because they've absorbed enough examples of humans doing them that they can predict what a good response looks like.</p>
+      <h3 style="margin-bottom: 14px;">It predicts the next word. It doesn't look anything up.</h3>
+      <p>It's trained on huge amounts of text, from books and articles to code and conversations, and has learned which words tend to follow which closely enough to write code, draft emails, and answer real questions.</p>
 
       <div class="viz-card">
-        <p class="viz-label">Watch a model build a sentence — one predicted word at a time</p>
+        <p class="viz-label">Watch it build a sentence, one predicted word at a time</p>
         <div class="anim-sentence" id="animSentence"><span class="anim-cursor">|</span></div>
         <div class="anim-candidates" id="animCandidates"></div>
       </div>
 
       <ul class="callout-list">
-        <li>An AI conversation doesn't automatically know other conversations. Without a memory feature, each session starts fresh.</li>
-        <li>AI can be wrong. It predicts what sounds right, not necessarily what is right.</li>
-        <li>Specific instructions reduce errors — every word in your prompt shapes the prediction.</li>
+        <li>Each new conversation starts fresh. Without memory, it won't recall your other chats.</li>
+        <li>It can be wrong. It predicts what sounds right, not what's actually true.</li>
+        <li>Specific prompts help. Every word you write shapes the prediction.</li>
       </ul>
     </section>
 
@@ -361,7 +353,7 @@
     <section class="panel" data-page="2">
       <p class="eyebrow">Interactive demo</p>
       <h2>See it in action</h2>
-      <p>Type the start of a sentence and press predict. This is a simplified illustration of the same core idea — ranked guesses about what comes next — not a real model.</p>
+      <p>Type the start of a sentence and press predict. It's a simplified illustration of the same idea (ranked guesses about what comes next), not a real model.</p>
       <div class="demo-card">
         <h3>Next-word prediction</h3>
         <p class="demo-caption">Try: "the best way to learn is to" or "once upon a"</p>
@@ -378,11 +370,12 @@
     <section class="panel" data-page="3">
       <p class="eyebrow">Quick check</p>
       <h2>Before you build...</h2>
-      <p class="q">When you ask an AI chatbot a question, what is it actually doing?</p>
+      <span class="quiz-badge">Quiz · 1 question</span>
+      <p class="q">When you ask an AI chatbot a question, what's it actually doing?</p>
       <div class="quiz" id="quiz">
-        <button type="button" data-correct="false">Searching the internet for the best-matching answer</button>
-        <button type="button" data-correct="true">Predicting the most likely next words, based on patterns learned in training</button>
-        <button type="button" data-correct="false">Looking the answer up in a fixed database it was given</button>
+        <button type="button" data-correct="false" data-explain="Not quite. Most chatbots don't browse the web by default. The answer comes from patterns learned during training, not a live search.">Searching the internet for the best-matching answer</button>
+        <button type="button" data-correct="true" data-explain="Right. There's no search and no stored answer. It builds the reply one predicted word at a time, based on patterns from training.">Predicting the most likely next words, based on patterns learned in training</button>
+        <button type="button" data-correct="false" data-explain="Not quite. There's no answer key it's checking against. It generates a new response each time, word by word.">Looking the answer up in a fixed database it was given</button>
       </div>
       <p class="quiz-feedback" id="quizFeedback"></p>
     </section>
@@ -391,9 +384,9 @@
     <section class="panel" data-page="4">
       <p class="eyebrow">Build 1 · Setup</p>
       <h2>Open your tool, pick a topic</h2>
-      <p>Open <a href="https://claude.ai" target="_blank" rel="noopener">claude.ai</a>, <a href="https://chatgpt.com" target="_blank" rel="noopener">chatgpt.com</a>, or <a href="https://gemini.google.com" target="_blank" rel="noopener">gemini.google.com</a> in a new tab — you'll use it on the next few screens.</p>
+      <p>Open <a href="https://claude.ai" target="_blank" rel="noopener">claude.ai</a>, <a href="https://chatgpt.com" target="_blank" rel="noopener">chatgpt.com</a>, or <a href="https://gemini.google.com" target="_blank" rel="noopener">gemini.google.com</a> in a new tab. You'll use it on the next few screens.</p>
       <p>Then pick a topic you know something about: your job, a hobby, a project you're working on. Stuck? Try "habits for good sleep" or "elements of a good workout routine."</p>
-      <label class="step-done"><input type="checkbox" id="step-1" class="track"> Done — tool's open, topic picked</label>
+      <label class="step-done"><input type="checkbox" id="step-1" class="track"> Done, tool's open and topic picked</label>
     </section>
 
     <!-- Page 6: Build document -->
@@ -404,7 +397,7 @@
       <div class="viz-card">
         <p class="viz-label">Here's exactly what you're about to do</p>
         <div class="wf-window">
-          <div class="wf-window-bar"><span></span><span></span><span></span><span class="wf-window-title">Your AI tool</span></div>
+          <div class="wf-window-bar"><span class="wf-dot"></span><span class="wf-dot"></span><span class="wf-dot"></span><span class="wf-window-title">Your AI tool</span></div>
           <div class="wf-body">
             <div class="wf-bubble-user" id="wfBubble">Write a one-page summary document about my topic...</div>
             <div class="wf-typing" id="wfTyping"><span></span><span></span><span></span></div>
@@ -435,14 +428,15 @@
       </div>
       <details class="why">
         <summary>Why this prompt works</summary>
-        <p>Specifying format — headers, length, structure — gives the AI a clear target. Without it, the AI picks a format for you, which sometimes works but is usually less useful than asking for exactly what you want.</p>
+        <p>Specifying format (headers, length, structure) gives the AI a clear target. Without it, the AI picks a format for you, which sometimes works but is usually less useful than asking for exactly what you want.</p>
       </details>
-      <p>You should see a box with a file type and a download button. Read through it — what sounds good, what sounds AI-generated? You can ask the AI to improve anything before downloading.</p>
+      <p>You should see a box with a file type and a download button. Read through it. What sounds good? What sounds AI-generated? You can ask the AI to improve anything before downloading.</p>
+      <p class="tie-back">This document came from the same prediction process as the demo you tried earlier. It might get a fact, name, or number wrong, so double-check anything you'd actually rely on.</p>
       <details class="troubleshoot">
         <summary>🔧 Troubleshooting: the file won't download or open correctly</summary>
         <p>The AI may have generated content but didn't create an actual file. If there's no download button, ask: "Can you give me a downloadable .docx file?" If your free plan blocks file exports, copy the content and paste it manually into Google Docs instead.</p>
       </details>
-      <label class="step-done"><input type="checkbox" id="step-2" class="track"> Done — I have a document</label>
+      <label class="step-done"><input type="checkbox" id="step-2" class="track"> Done, I have a document</label>
     </section>
 
     <!-- Page 7: Go further -->
@@ -470,15 +464,19 @@
     <!-- Page 8: Wrap up -->
     <section class="panel" data-page="7">
       <p class="eyebrow">Wrap up</p>
-      <h2>Reflect and finish</h2>
-      <p>Before you close this out, jot a quick note — this is for you, not a grade. What did the AI get right? What would you change about your prompt next time?</p>
-      <textarea id="reflection" placeholder="What surprised you about how the AI responded?"></textarea>
+      <h2>Nice work</h2>
+      <p>You saw how AI predicts text instead of searching for it, tried that live in the demo, and used a real prompt to get an actual document out of it.</p>
+      <ul class="callout-list">
+        <li>How large language models predict rather than search</li>
+        <li>What that prediction looks like, word by word</li>
+        <li>A document built from a prompt you can reuse on your own topics</li>
+      </ul>
       <div class="wrap-actions">
         <button class="btn-primary" id="completeBtn" type="button">Mark lesson complete</button>
         <span class="save-note" id="saveNote">Saved automatically on this device.</span>
       </div>
       <div class="next-lesson">
-        <strong>Next up — Lesson 2:</strong> Images, voice, and video with AI. Unlocks once you mark this lesson complete.
+        <strong>Next up:</strong> Lesson 2 covers images, voice, and video with AI. It unlocks once you mark this one complete.
       </div>
     </section>
   </main>
@@ -486,7 +484,6 @@
   <footer class="nav">
     <div class="nav-row">
       <button class="btn-secondary" id="backBtn" type="button">Back</button>
-      <div class="nav-spacer"></div>
       <button class="btn-primary" id="nextBtn" type="button">Next</button>
     </div>
   </footer>
@@ -497,7 +494,7 @@
   var STORAGE_KEY = 'leland-ai-tools-lesson1';
   var PAGE_TITLES = ['Welcome', 'Concept', 'Demo', 'Check', 'Setup', 'Document', 'Go further', 'Wrap up'];
   var LAST_PAGE = PAGE_TITLES.length - 1;
-  var TRACK_IDS = ['obj-concept', 'obj-demo', 'obj-build', 'step-1', 'step-2', 'step-3'];
+  var TRACK_IDS = ['step-1', 'step-2', 'step-3'];
 
   var state = load();
   if (typeof state.page !== 'number') state.page = 0;
@@ -515,7 +512,7 @@
   }
 
   function pageDone(i) {
-    if (i === 0) return state['obj-concept'] && state['obj-demo'] && state['obj-build'];
+    if (i === 0) return state.maxVisited > 0;
     if (i === 1) return state.maxVisited > 1;
     if (i === 2) return !!state.demoTried;
     if (i === 3) return !!state.quizAnswered;
@@ -565,7 +562,7 @@
 
     var resumeNote = document.getElementById('resumeNote');
     resumeNote.innerHTML = (startingPage > 0 && !state.__ackResume)
-      ? '<span class="resume-note">Welcome back — resuming at step ' + (startingPage + 1) + '.</span>' : '';
+      ? '<span class="resume-note">Welcome back. Resuming at step ' + (startingPage + 1) + '.</span>' : '';
   }
 
   function renderFields() {
@@ -573,7 +570,6 @@
       var el = document.getElementById(id);
       if (el) el.checked = !!state[id];
     });
-    document.getElementById('reflection').value = state.reflection || '';
     document.getElementById('completeBtn').textContent = state.completed ? '✓ Lesson complete' : 'Mark lesson complete';
 
     if (state.quizAnswered) {
@@ -583,9 +579,7 @@
         if (b.dataset.correct === 'true') b.classList.add('correct');
         else if (state.quizPickedWrong && b.textContent === state.quizPickedWrong) b.classList.add('incorrect');
       });
-      document.getElementById('quizFeedback').textContent = state.quizCorrect
-        ? 'Right — it’s prediction, not lookup.'
-        : 'Not quite — the correct answer is highlighted above: AI predicts likely next words from learned patterns.';
+      document.getElementById('quizFeedback').textContent = state.quizFeedbackText || '';
     }
   }
 
@@ -759,12 +753,11 @@
         if (b.dataset.correct === 'true') b.classList.add('correct');
         else if (b === btn) b.classList.add('incorrect');
       });
-      document.getElementById('quizFeedback').textContent = correct
-        ? 'Right — it’s prediction, not lookup.'
-        : 'Not quite — the correct answer is highlighted above: AI predicts likely next words from learned patterns.';
+      document.getElementById('quizFeedback').textContent = btn.dataset.explain;
       state.quizAnswered = true;
       state.quizCorrect = correct;
       state.quizPickedWrong = correct ? null : btn.textContent;
+      state.quizFeedbackText = btn.dataset.explain;
       persist();
       renderChrome();
     });
@@ -855,16 +848,6 @@
     document.body.removeChild(ta);
     cb();
   }
-
-  var reflectionEl = document.getElementById('reflection');
-  var reflectionTimer;
-  reflectionEl.addEventListener('input', function () {
-    clearTimeout(reflectionTimer);
-    reflectionTimer = setTimeout(function () {
-      state.reflection = reflectionEl.value;
-      persist();
-    }, 400);
-  });
 
   document.getElementById('completeBtn').addEventListener('click', function () {
     state.completed = !state.completed;
