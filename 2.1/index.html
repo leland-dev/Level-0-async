@@ -1,5 +1,5 @@
 <meta charset="utf-8">
-<title>How AI Thinks, Then Build a Document · Lesson 1</title>
+<title>Create Images and Video with AI · Lesson 2</title>
 <link rel="icon" type="image/svg+xml" href="https://lebrain.joinleland.com/files/leland-icon-black">
 <style>
   @font-face {
@@ -272,6 +272,23 @@
   .demo-pct { width: 42px; text-align: right; color: var(--gray); font-variant-numeric: tabular-nums; font-size: 12.5px; }
   .demo-hint { margin-top: 14px; font-size: 12.5px; color: var(--gray); font-style: italic; }
 
+  /* style gallery demo */
+  .style-chip-row { display: flex; gap: 8px; flex-wrap: wrap; }
+  .style-chip {
+    font-family: var(--font-body); font-weight: 500; font-size: 13.5px;
+    background: var(--surface); color: var(--ink); border: 1px solid var(--stroke-strong);
+    padding: 9px 16px; border-radius: 999px; cursor: pointer; transition: background .15s ease, border-color .15s ease;
+  }
+  .style-chip:hover { border-color: var(--ink-soft); }
+  .style-chip.active { background: var(--yellow); border-color: var(--yellow); color: #1a1400; }
+  .style-preview {
+    margin-top: 16px; min-height: 64px; background: var(--surface); border: 1px solid var(--stroke);
+    border-radius: 12px; padding: 16px 18px;
+  }
+  .style-preview-empty { margin: 0; font-size: 13.5px; color: var(--gray); font-style: italic; }
+  .style-preview-prompt { margin: 0 0 8px; font-family: var(--font-mono); font-size: 13px; color: var(--ink-soft); }
+  .style-preview-desc { margin: 0; font-size: 14.5px; color: var(--ink); }
+
   /* checkpoint quiz */
   .q { font-weight: 500; font-size: 16px; }
   .quiz { display: flex; flex-direction: column; gap: 8px; margin-top: 4px; }
@@ -345,7 +362,7 @@
         <img class="logo-light" src="https://lebrain.joinleland.com/files/leland-wordmark-black" alt="" />
         <img class="logo-dark" src="https://lebrain.joinleland.com/files/leland-wordmark-white" alt="" />
       </div>
-      <div class="crumbs">AI Builder Foundations · Lesson 1 of 6</div>
+      <div class="crumbs">AI Builder Foundations · Lesson 2 of 6</div>
     </div>
     <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
     <div class="progress-label" id="progressLabel">Step 1 of 8 · Welcome</div>
@@ -356,50 +373,61 @@
   <main>
     <!-- Page 1: Welcome -->
     <section class="panel" data-page="0">
-      <p class="eyebrow">Lesson 1 · How AI Thinks, Then Build</p>
-      <h1>Learn how AI predicts text, then put it to work on a real document.</h1>
+      <p class="eyebrow">Lesson 2 · Create Images and Video with AI</p>
+      <h1>One idea, two new kinds of output: pictures and video.</h1>
       <p class="viz-label" style="margin-top: 28px;">What you'll learn</p>
       <ul class="callout-list">
-        <li>How a large language model actually generates an answer, one word at a time</li>
-        <li>What that prediction looks like happening live, in a simple demo you control</li>
-        <li>How to write a prompt that turns into a real, working document</li>
+        <li>How AI image generation actually works, under the hood</li>
+        <li>How that same idea extends to video</li>
+        <li>How to generate both in a specific style</li>
       </ul>
     </section>
 
     <!-- Page 2: Concept -->
     <section class="panel" data-page="1">
       <p class="eyebrow">Concept</p>
-      <h2>What a chatbot is actually doing</h2>
-      <h3 style="margin-bottom: 14px;">It predicts the next word. It doesn't look anything up.</h3>
-      <p>It's trained on a huge amount of text, and learned which word tends to come next given everything before it. Every reply, including this sentence, gets built one predicted word at a time.</p>
+      <h2>Images and video, same idea</h2>
+
+      <h3 style="margin-bottom: 14px;">Images: it predicts pixels the same way it predicts words.</h3>
+      <p>An image model has looked at a huge number of images and learned the patterns in what things tend to look like. When you describe a subject and a style, it generates a brand new grid of pixels that fits your description, guided by that learned pattern. Nothing gets pulled up from a library of real photos. The whole image is predicted, the same idea as text, just applied to pixels instead of words.</p>
 
       <div class="viz-card">
-        <p class="viz-label">Watch a sentence get built, one predicted word at a time</p>
+        <p class="viz-label">Watch the same idea play out as a sentence, one predicted word at a time</p>
         <div class="anim-sentence" id="animSentence"><span class="anim-cursor">|</span></div>
         <div class="anim-candidates" id="animCandidates"></div>
       </div>
 
+      <p class="tie-back">Because it's generating an image rather than pulling up a real one, be thoughtful about what you create and share, especially anything that could be mistaken for a real photo or person. More on using this responsibly in Lesson 6.</p>
+
+      <h3 style="margin: 26px 0 14px;">Video: turning a description into a short clip</h3>
+      <p>The same prediction idea extends to motion. Give a video model a text description, or a short storyboard of what should happen, and it generates a short clip frame by frame to match. Today that means a few seconds of footage, not a full scene or a movie. Motion can still look imperfect and details can drift between frames, so treat it as a fast way to sketch an idea in motion, not a finished production tool yet.</p>
+
       <ul class="callout-list">
-        <li>It has no memory between chats unless you tell it again</li>
-        <li>Because it's predicting rather than fact-checking, it can sound confident and still be wrong</li>
-        <li>The more specific your prompt, the better its predictions get</li>
+        <li>Image generation works from a text description, not a real photo you upload</li>
+        <li>Specific style and format words in your prompt change the pixels it predicts</li>
+        <li>Video generation today means short clips, and it's still improving fast</li>
       </ul>
     </section>
 
     <!-- Page 3: Demo -->
     <section class="panel" data-page="2">
       <p class="eyebrow">Interactive demo</p>
-      <h2>Try it yourself</h2>
-      <p>Type the start of a sentence and press Predict to see the next word ranked by likelihood, the same way a real model does it before it writes anything.</p>
+      <h2>Browse styles before you generate</h2>
+      <p>Click a style chip to see the kind of result that same style word tends to produce.</p>
       <div class="demo-card">
-        <h3>Next-word predictor</h3>
-        <p class="demo-caption">Try: "the best way to learn is to" (or write your own)</p>
-        <div class="demo-row">
-          <input id="demoInput" type="text" placeholder="Start a sentence…" />
-          <button class="btn-primary" id="demoBtn" type="button">Predict</button>
+        <h3>Style gallery</h3>
+        <p class="demo-caption">Same subject, six different style words</p>
+        <div class="style-chip-row" id="styleChips">
+          <button class="style-chip" type="button" data-style="Photorealistic">Photorealistic</button>
+          <button class="style-chip" type="button" data-style="Illustration">Illustration</button>
+          <button class="style-chip" type="button" data-style="3D render">3D render</button>
+          <button class="style-chip" type="button" data-style="Watercolor">Watercolor</button>
+          <button class="style-chip" type="button" data-style="Anime">Anime</button>
+          <button class="style-chip" type="button" data-style="Line art">Line art</button>
         </div>
-        <div class="demo-results" id="demoResults"></div>
-        <p class="demo-hint" id="demoHint"></p>
+        <div class="style-preview" id="stylePreview">
+          <p class="style-preview-empty">Pick a style above to see what it produces.</p>
+        </div>
       </div>
     </section>
 
@@ -408,11 +436,11 @@
       <p class="eyebrow">Quick check</p>
       <h2>Before you move on...</h2>
       <span class="quiz-badge">Quiz · 1 question</span>
-      <p class="q">When you ask a chatbot a question, what is it actually doing to generate the answer?</p>
+      <p class="q">You prompt an AI image tool with "a golden retriever wearing a wizard hat, photorealistic." What is it actually doing to produce the picture?</p>
       <div class="quiz" id="quiz">
-        <button type="button" data-correct="false" data-explain="Most chatbots aren't browsing the live web by default. It's generating a reply word by word from what it learned during training, not fetching a fresh page.">Searching the internet in real time</button>
-        <button type="button" data-correct="true" data-explain="Right. It picks the single most probable next word given everything so far, then repeats that, one word at a time, until the reply is done.">Predicting the most likely next word, over and over</button>
-        <button type="button" data-correct="false" data-explain="There's no lookup table of correct answers behind it. That's exactly why it can state something wrong with total confidence: it's predicting, not retrieving.">Looking the answer up in a fixed database of facts</button>
+        <button type="button" data-correct="false" data-explain="There's no photo library it's searching. Image models don't retrieve existing pictures, they generate a brand new one, which is why the same prompt never comes back identical twice.">Searching its training data for a real photo that matches</button>
+        <button type="button" data-correct="true" data-explain="Right. It generates a new grid of pixels from a learned pattern of what images look like, guided by your words, the same prediction idea as text just applied to pixels.">Generating new pixels from a learned pattern, guided by your words</button>
+        <button type="button" data-correct="false" data-explain="There's no source photo of an actual dog being altered here. Nothing existing gets edited. The whole image is generated from scratch based on your description.">Editing a real photo of a dog it has stored somewhere</button>
       </div>
       <p class="quiz-feedback" id="quizFeedback"></p>
     </section>
@@ -421,27 +449,27 @@
     <section class="panel" data-page="4">
       <p class="eyebrow">Build 1 · Setup</p>
       <h2>Get set up</h2>
-      <p>Open your AI tool of choice: claude.ai, chatgpt.com, or gemini.google.com. Pick any topic you actually want a real document about, your work, a hobby, something you're planning.</p>
-      <label class="step-done"><input type="checkbox" id="step-1" class="track"> Done, I've got a tool open and a topic in mind</label>
+      <p>Open ChatGPT (chatgpt.com). It generates images directly in the chat, no separate tool needed. Pick a subject you actually want to see rendered, a pet, a place, an object, anything.</p>
+      <label class="step-done"><input type="checkbox" id="step-1" class="track"> Done, I've got ChatGPT open and a subject in mind</label>
     </section>
 
     <!-- Page 6: Build document -->
     <section class="panel" data-page="5">
       <p class="eyebrow">Build 1 · Prompt</p>
-      <h2>Build a real document</h2>
+      <h2>Generate an image in a specific style</h2>
 
       <div class="viz-card">
         <p class="viz-label">Here's exactly what you're about to do</p>
         <div class="wf-window">
-          <div class="wf-window-bar"><span class="wf-dot"></span><span class="wf-dot"></span><span class="wf-dot"></span><span class="wf-window-title">Your AI tool</span></div>
+          <div class="wf-window-bar"><span class="wf-dot"></span><span class="wf-dot"></span><span class="wf-dot"></span><span class="wf-window-title">ChatGPT</span></div>
           <div class="wf-body">
-            <div class="wf-bubble-user" id="wfBubble">Write a one-page overview of my topic, with a summary, key points, and a next step...</div>
+            <div class="wf-bubble-user" id="wfBubble">A treehouse in a redwood forest, Studio Ghibli style, golden hour lighting, wide shot...</div>
             <div class="wf-typing" id="wfTyping"><span></span><span></span><span></span></div>
             <div class="wf-file" id="wfFile">
-              <div class="wf-file-icon">📄</div>
+              <div class="wf-file-icon">🖼️</div>
               <div>
-                <div class="wf-file-name">topic-overview.docx</div>
-                <div class="wf-file-sub">Ready to download</div>
+                <div class="wf-file-name">treehouse-ghibli.png</div>
+                <div class="wf-file-sub">Image ready</div>
               </div>
               <div class="wf-file-dl">Download</div>
             </div>
@@ -450,49 +478,51 @@
             <div class="wf-clip" id="wfClip">📋</div>
             <div class="wf-input">
               <span class="wf-input-ghost" id="wfInputGhost">Paste your prompt…</span>
-              <span class="wf-input-fill" id="wfInputFill">Write a one-page overview…</span>
+              <span class="wf-input-fill" id="wfInputFill">A treehouse in a redwood forest…</span>
             </div>
             <div class="wf-send" id="wfSend">➤</div>
           </div>
         </div>
       </div>
 
-      <p>Copy the prompt below into your AI tool, swapping in your own topic.</p>
+      <p>Copy the madlibs prompt below into ChatGPT, filling in your own subject and style.</p>
       <div class="prompt-box">
-        <pre id="prompt1">Write a one-page overview of [your topic] for someone who knows nothing about it. Include: a 2-sentence summary, three key points with one sentence each, and one recommended next step. Keep it skimmable, short paragraphs and bullets. Format it as a document I can download.</pre>
+        <pre id="prompt1">[subject] in the style of [style], [mood/lighting], [format]</pre>
         <button class="copy-btn" data-copy="prompt1" type="button">Copy prompt</button>
       </div>
+      <p>Worked example: "A treehouse in a redwood forest, in the style of a Studio Ghibli film, golden hour lighting, wide shot."</p>
       <details class="why">
         <summary>Why this prompt works</summary>
-        <p>Naming the exact sections (summary, three points, next step) is what turns a vague ask into a document with real structure, instead of one long paragraph.</p>
+        <p>Each bracket does a different job. The subject tells it what to draw. The style name anchors it to a specific learned look instead of a generic default. Mood and lighting shape the atmosphere. Format (wide shot, close-up, portrait) controls the framing, the same way it would for a photographer.</p>
       </details>
-      <p>Download the file it gives you and open it. Skim it for anything that sounds off. Remember, it predicted this, it didn't verify it.</p>
+      <p>Look at what comes back. Check that the subject, style, and framing all match what you asked for.</p>
       <details class="troubleshoot">
-        <summary>🔧 Troubleshooting: it just printed the text in the chat</summary>
-        <p>Ask directly: "Turn that into a downloadable .docx." Most tools will produce the file on request even if they didn't the first time.</p>
+        <summary>🔧 Troubleshooting: the result doesn't match what you pictured</summary>
+        <p>Add more specific style and format language. "Illustration" is vague, "flat vector illustration with thick outlines" gives it something concrete to aim for.</p>
       </details>
-      <p class="tie-back">Same idea as the concept page: the words in this document are the model's best predictions, not verified facts. Worth a skim before you trust it.</p>
       <label class="step-done"><input type="checkbox" id="step-2" class="track"> Done</label>
     </section>
 
     <!-- Page 7: Go further -->
     <section class="panel" data-page="6">
-      <p class="eyebrow">Build 1 · Stretch</p>
-      <h2>Go further (optional)</h2>
-      <p>Same topic, two more formats. See how far one idea stretches when you just change what you ask for.</p>
+      <p class="eyebrow">Build 2 · Stretch</p>
+      <h2>Go further: generate a video (optional)</h2>
+      <p>Video generation is newer and less reliable than images, so treat this as exploratory. Try it in whichever video tool you have access to.</p>
       <details class="further">
-        <summary>⚡ Turn it into a spreadsheet</summary>
+        <summary>⚡ Try a video generation prompt</summary>
         <div class="prompt-box">
-          <pre id="prompt2">Turn this same topic into a spreadsheet: one row per key point, with columns for the point, why it matters, and a next action. Make it downloadable.</pre>
+          <pre id="prompt2">A [subject] doing [motion], [duration] seconds, [style]. Example: "A paper airplane gliding through a sunlit office, 4 seconds, stop-motion animation style."</pre>
           <button class="copy-btn" data-copy="prompt2" type="button">Copy prompt</button>
         </div>
+        <p>Expect a short, rough clip rather than something polished. Motion can wobble and small details can shift between frames. That's the current state of the tech, not a sign you did anything wrong.</p>
       </details>
       <details class="further">
-        <summary>⚡ Turn it into a slide outline</summary>
-        <div class="prompt-box">
-          <pre id="prompt3">Turn this same topic into a 3-slide outline: a title slide, one slide per key point, and a closing slide with the next step. Make it downloadable.</pre>
-          <button class="copy-btn" data-copy="prompt3" type="button">Copy prompt</button>
-        </div>
+        <summary>⚡ Try AI music generation</summary>
+        <p>Describe a genre and a mood to a music generator like Suno, and see what a 30-second track sounds like from just a text prompt.</p>
+      </details>
+      <details class="further">
+        <summary>⚡ Try an AI-assisted game</summary>
+        <p>Some browser games now generate levels, dialogue, or art on the fly instead of shipping it all pre-made. Worth poking at one just to see where the generation shows up.</p>
       </details>
       <label class="step-done"><input type="checkbox" id="step-3" class="track"> Done, or skipping for now</label>
     </section>
@@ -501,18 +531,18 @@
     <section class="panel" data-page="7">
       <p class="eyebrow">Wrap up</p>
       <h2>Nice work</h2>
-      <p>You saw how a model builds an answer one predicted word at a time, then used that same mechanic to produce a real document.</p>
+      <p>You saw how the same prediction idea behind text also generates images and video, and used it to make something in a specific style.</p>
       <ul class="callout-list">
-        <li>It predicts the next word, it doesn't search or look things up</li>
-        <li>You watched that prediction happen live in the demo</li>
-        <li>You built a working prompt that turned into a real, reusable document</li>
+        <li>Image generation is prediction applied to pixels, not photo editing or search</li>
+        <li>Video extends the same idea, just newer and less consistent today</li>
+        <li>You built a working image prompt with a subject and a specific style</li>
       </ul>
       <div class="wrap-actions">
         <button class="btn-primary" id="completeBtn" type="button">Mark lesson complete</button>
         <span class="save-note" id="saveNote">Saved automatically on this device.</span>
       </div>
       <div class="next-lesson">
-        <strong>Next up:</strong> Lesson 2 covers images, voice, and video with AI. Same core idea, three new kinds of output.
+        <strong>Next up:</strong> Talking to AI with voice.
       </div>
     </section>
   </main>
@@ -527,7 +557,7 @@
 
 <script>
 (function () {
-  var STORAGE_KEY = 'leland-lesson-aibp-l0-1-1';
+  var STORAGE_KEY = 'leland-lesson-aibp-l0-2-1';
   // CONTENT: one short label per page, in order, matching the data-page panels below.
   // Add/remove entries if you add/remove pages -- see references/page-patterns.md.
   var PAGE_TITLES = ['Welcome', 'Concept', 'Demo', 'Check', 'Step 1', 'Step 2', 'Step 3', 'Wrap up'];
@@ -657,14 +687,13 @@
     var WORDS = [
       { word: 'It', distractors: ['She', 'We'] },
       { word: 'predicts', distractors: ['searches', 'remembers'] },
+      { word: 'pixels', distractors: ['files', 'colors'] },
       { word: 'the', distractors: ['a', 'your'] },
-      { word: 'next', distractors: ['random', 'best'] },
-      { word: 'word,', distractors: ['fact,', 'answer,'] },
-      { word: 'one', distractors: ['every', 'no'] },
-      { word: 'word', distractors: ['page', 'topic'] },
-      { word: 'at', distractors: ['near', 'past'] },
-      { word: 'a', distractors: ['the', 'each'] },
-      { word: 'time.', distractors: ['once.', 'glance.'] }
+      { word: 'same', distractors: ['wrong', 'random'] },
+      { word: 'way', distractors: ['size', 'place'] },
+      { word: 'it', distractors: ['we', 'you'] },
+      { word: 'predicts', distractors: ['deletes', 'ignores'] },
+      { word: 'words.', distractors: ['sounds.', 'shapes.'] }
     ];
 
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -804,64 +833,33 @@
     });
   });
 
-  // CONTENT: this whole block (DEMO_TABLE / GENERIC_BY_LAST_WORD / FALLBACK / predict() / runDemo())
-  // is the page-3 example demo -- next-word prediction. If your lesson's demo is a different mechanic,
-  // replace predict() and runDemo() with your own logic; keep the same #demoInput/#demoBtn/#demoResults
-  // ids so the existing CSS and event wiring keep working. Delete this block and page 3 entirely if the
-  // lesson doesn't have a hands-on demo.
-  var DEMO_TABLE = {
-    'the best way to learn is to': [['practice', 34], ['try', 22], ['build', 19], ['ask', 13], ['read', 12]],
-    'i think ai is': [['exciting', 28], ['powerful', 24], ['useful', 20], ['changing', 16], ['overrated', 12]],
-    'the future of work will': [['change', 31], ['depend', 23], ['require', 20], ['evolve', 15], ['shrink', 11]],
-    'once upon a': [['time', 71], ['dream', 12], ['midnight', 9], ['star', 5], ['hill', 3]]
+  // Page-3 demo: a style gallery. Clicking a chip swaps in what that style word
+  // tends to produce, simulating browsing styles before you actually generate.
+  var STYLE_EXAMPLES = {
+    'Photorealistic': 'Aims for the look of a real camera photo: natural light, realistic texture, believable shadows and reflections.',
+    'Illustration': 'Flat or painterly artwork with visible linework and simplified color, closer to a storybook page than a photo.',
+    '3D render': 'A computer-generated look with clean geometry, soft studio lighting, and a smooth, slightly synthetic surface.',
+    'Watercolor': 'Soft, bleeding edges and translucent washes of color, like paint soaking into textured paper.',
+    'Anime': 'Bold outlines, simplified facial features, and flat cel-shaded color, in the style of Japanese animation.',
+    'Line art': 'A black-and-white contour drawing with no color fill, just clean outline strokes.'
   };
-  var GENERIC_BY_LAST_WORD = {
-    'to': [['learn', 26], ['build', 22], ['understand', 18], ['create', 17], ['improve', 17]],
-    'is': [['important', 24], ['useful', 22], ['different', 20], ['changing', 18], ['complex', 16]],
-    'a': [['good', 26], ['great', 21], ['new', 20], ['simple', 17], ['common', 16]],
-    'the': [['best', 24], ['first', 21], ['most', 20], ['same', 18], ['whole', 17]],
-    'and': [['then', 26], ['also', 22], ['finally', 20], ['yet', 17], ['still', 15]]
-  };
-  var FALLBACK = [['it', 24], ['this', 21], ['that', 19], ['the', 18], ['a', 18]];
 
-  function normalize(s) { return s.trim().toLowerCase().replace(/[^\w\s]/g, ''); }
-  function predict(text) {
-    var norm = normalize(text);
-    if (!norm) return FALLBACK;
-    if (DEMO_TABLE[norm]) return DEMO_TABLE[norm];
-    var words = norm.split(/\s+/);
-    var last = words[words.length - 1];
-    if (GENERIC_BY_LAST_WORD[last]) return GENERIC_BY_LAST_WORD[last];
-    var seed = (norm.length * 7) % FALLBACK.length;
-    return FALLBACK.slice(seed).concat(FALLBACK.slice(0, seed));
-  }
-
-  document.getElementById('demoBtn').addEventListener('click', runDemo);
-  document.getElementById('demoInput').addEventListener('keydown', function (e) {
-    if (e.key === 'Enter') runDemo();
-  });
-  function runDemo() {
-    var input = document.getElementById('demoInput');
-    var results = predict(input.value);
-    var container = document.getElementById('demoResults');
-    container.innerHTML = '';
-    results.forEach(function (pair) {
-      var row = document.createElement('div');
-      row.className = 'demo-result-row';
-      row.innerHTML =
-        '<span class="demo-word">' + pair[0] + '</span>' +
-        '<span class="demo-bar-track"><span class="demo-bar-fill" style="width:' + pair[1] + '%"></span></span>' +
-        '<span class="demo-pct">' + pair[1] + '%</span>';
-      container.appendChild(row);
+  document.querySelectorAll('.style-chip').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('.style-chip').forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var style = btn.dataset.style;
+      var preview = document.getElementById('stylePreview');
+      preview.innerHTML =
+        '<p class="style-preview-prompt">"A treehouse in a redwood forest, in the style of ' + style.toLowerCase() + '"</p>' +
+        '<p class="style-preview-desc">' + STYLE_EXAMPLES[style] + '</p>';
+      if (!state.demoTried) {
+        state.demoTried = true;
+        persist();
+        renderChrome();
+      }
     });
-    document.getElementById('demoHint').textContent =
-      'A real model ranks tens of thousands of candidate words this way, every single word it writes.';
-    if (!state.demoTried) {
-      state.demoTried = true;
-      persist();
-      renderChrome();
-    }
-  }
+  });
 
   document.querySelectorAll('.copy-btn').forEach(function (btn) {
     btn.addEventListener('click', function () {

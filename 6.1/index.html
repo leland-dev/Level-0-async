@@ -1,5 +1,5 @@
 <meta charset="utf-8">
-<title>How AI Thinks, Then Build a Document · Lesson 1</title>
+<title>Permissions and Data Security · Lesson 6</title>
 <link rel="icon" type="image/svg+xml" href="https://lebrain.joinleland.com/files/leland-icon-black">
 <style>
   @font-face {
@@ -272,6 +272,15 @@
   .demo-pct { width: 42px; text-align: right; color: var(--gray); font-variant-numeric: tabular-nums; font-size: 12.5px; }
   .demo-hint { margin-top: 14px; font-size: 12.5px; color: var(--gray); font-style: italic; }
 
+  .demo-scope-btn { background: var(--surface); color: var(--ink); border: 1px solid var(--stroke-strong); }
+  .demo-scope-btn.active { background: var(--yellow); border-color: var(--yellow); }
+  .demo-scope-card {
+    background: var(--surface); border: 1px solid var(--stroke); border-radius: 12px; padding: 16px 18px;
+  }
+  .demo-scope-title { font-family: var(--font-head); font-size: 15px; font-weight: 500; margin: 0 0 8px; }
+  .demo-scope-line { font-size: 13.5px; color: var(--ink-soft); margin: 0 0 8px; }
+  .demo-scope-line:last-child { margin-bottom: 0; color: var(--ink); }
+
   /* checkpoint quiz */
   .q { font-weight: 500; font-size: 16px; }
   .quiz { display: flex; flex-direction: column; gap: 8px; margin-top: 4px; }
@@ -345,7 +354,7 @@
         <img class="logo-light" src="https://lebrain.joinleland.com/files/leland-wordmark-black" alt="" />
         <img class="logo-dark" src="https://lebrain.joinleland.com/files/leland-wordmark-white" alt="" />
       </div>
-      <div class="crumbs">AI Builder Foundations · Lesson 1 of 6</div>
+      <div class="crumbs">AI Builder Foundations · Lesson 6 of 6</div>
     </div>
     <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
     <div class="progress-label" id="progressLabel">Step 1 of 8 · Welcome</div>
@@ -356,50 +365,56 @@
   <main>
     <!-- Page 1: Welcome -->
     <section class="panel" data-page="0">
-      <p class="eyebrow">Lesson 1 · How AI Thinks, Then Build</p>
-      <h1>Learn how AI predicts text, then put it to work on a real document.</h1>
+      <p class="eyebrow">Lesson 6 · Permissions and Data Security</p>
+      <h1>Using AI responsibly at work starts with knowing what it can actually access.</h1>
       <p class="viz-label" style="margin-top: 28px;">What you'll learn</p>
       <ul class="callout-list">
-        <li>How a large language model actually generates an answer, one word at a time</li>
-        <li>What that prediction looks like happening live, in a simple demo you control</li>
-        <li>How to write a prompt that turns into a real, working document</li>
+        <li>The different permission modes an AI tool can operate under, and what each one actually grants</li>
+        <li>How the same task changes depending on which permissions are turned on</li>
+        <li>How to request connector access from your company's IT team without slowing everything down</li>
       </ul>
     </section>
 
     <!-- Page 2: Concept -->
     <section class="panel" data-page="1">
       <p class="eyebrow">Concept</p>
-      <h2>What a chatbot is actually doing</h2>
-      <h3 style="margin-bottom: 14px;">It predicts the next word. It doesn't look anything up.</h3>
-      <p>It's trained on a huge amount of text, and learned which word tends to come next given everything before it. Every reply, including this sentence, gets built one predicted word at a time.</p>
+      <h2>What your AI tool can reach, and who has to sign off</h2>
+      <p>Two things decide what an AI tool can do on your behalf: which permissions you've turned on, and which ones your company allows in the first place.</p>
+
+      <h3 style="margin: 22px 0 10px;">Permissions</h3>
+      <p>An AI tool can operate under a few distinct access modes: tool use (calling a specific built-in function, like a calculator), web access (searching or browsing the live internet), computer or desktop control (taking actions on your screen directly), and data or file access (reading a file you upload or a drive you've connected). Each one is a separate grant. Turning one on doesn't turn the others on.</p>
 
       <div class="viz-card">
-        <p class="viz-label">Watch a sentence get built, one predicted word at a time</p>
+        <p class="viz-label">The idea in one line</p>
         <div class="anim-sentence" id="animSentence"><span class="anim-cursor">|</span></div>
         <div class="anim-candidates" id="animCandidates"></div>
       </div>
 
+      <h3 style="margin: 22px 0 10px;">Company constraints</h3>
+      <p>Most workplaces don't let an AI tool touch company systems by default. Getting a connector approved, like a shared drive or a ticketing system, usually means asking IT first. A specific, scoped request gets answered faster than a vague one.</p>
+
       <ul class="callout-list">
-        <li>It has no memory between chats unless you tell it again</li>
-        <li>Because it's predicting rather than fact-checking, it can sound confident and still be wrong</li>
-        <li>The more specific your prompt, the better its predictions get</li>
+        <li>Granting web access doesn't grant file access, or the reverse. Check each one separately before you assume what a tool can see</li>
+        <li>A tool with computer control can click and type on your actual screen, which is a bigger grant than it sounds like at first</li>
+        <li>When requesting IT access, naming exactly what data the connector would touch speeds up approval more than anything else you can say</li>
       </ul>
     </section>
 
     <!-- Page 3: Demo -->
     <section class="panel" data-page="2">
       <p class="eyebrow">Interactive demo</p>
-      <h2>Try it yourself</h2>
-      <p>Type the start of a sentence and press Predict to see the next word ranked by likelihood, the same way a real model does it before it writes anything.</p>
+      <h2>Same task, three permission scopes</h2>
+      <p>The task is the same each time: "Summarize this quarterly report." Click each permission scope below to see what changes.</p>
       <div class="demo-card">
-        <h3>Next-word predictor</h3>
-        <p class="demo-caption">Try: "the best way to learn is to" (or write your own)</p>
+        <h3>Summarize this quarterly report</h3>
+        <p class="demo-caption">Click a scope to see what the AI tool can actually do with it</p>
         <div class="demo-row">
-          <input id="demoInput" type="text" placeholder="Start a sentence…" />
-          <button class="btn-primary" id="demoBtn" type="button">Predict</button>
+          <button class="btn-primary demo-scope-btn" data-scope="chat" type="button">Chat only</button>
+          <button class="btn-primary demo-scope-btn" data-scope="file" type="button">+ File access</button>
+          <button class="btn-primary demo-scope-btn" data-scope="web" type="button">+ Web access</button>
         </div>
         <div class="demo-results" id="demoResults"></div>
-        <p class="demo-hint" id="demoHint"></p>
+        <p class="demo-hint" id="demoHint">Pick a scope above to see the result.</p>
       </div>
     </section>
 
@@ -408,90 +423,118 @@
       <p class="eyebrow">Quick check</p>
       <h2>Before you move on...</h2>
       <span class="quiz-badge">Quiz · 1 question</span>
-      <p class="q">When you ask a chatbot a question, what is it actually doing to generate the answer?</p>
+      <p class="q">You ask your AI tool, "What's today's closing price for a stock I own?" Which permission does it need to answer that correctly?</p>
       <div class="quiz" id="quiz">
-        <button type="button" data-correct="false" data-explain="Most chatbots aren't browsing the live web by default. It's generating a reply word by word from what it learned during training, not fetching a fresh page.">Searching the internet in real time</button>
-        <button type="button" data-correct="true" data-explain="Right. It picks the single most probable next word given everything so far, then repeats that, one word at a time, until the reply is done.">Predicting the most likely next word, over and over</button>
-        <button type="button" data-correct="false" data-explain="There's no lookup table of correct answers behind it. That's exactly why it can state something wrong with total confidence: it's predicting, not retrieving.">Looking the answer up in a fixed database of facts</button>
+        <button type="button" data-correct="true" data-explain="Right. Stock prices change by the minute, so the model needs to reach a live, outside source instead of relying on what it learned during training.">Web access</button>
+        <button type="button" data-correct="false" data-explain="Data or file access lets it read something you've uploaded or connected, like a spreadsheet. A live stock price isn't sitting in a file anywhere on your machine.">Data or file access</button>
+        <button type="button" data-correct="false" data-explain="Computer or desktop control lets it click and type on your screen. That doesn't get it a stock price either, unless it's controlling a browser to go look one up, which is really web access doing the work.">Computer or desktop control</button>
+        <button type="button" data-correct="false" data-explain="Tool use covers a specific built-in function, like a calculator or code runner. Fetching a live number from outside the tool is exactly what web access is for.">Tool use</button>
       </div>
       <p class="quiz-feedback" id="quizFeedback"></p>
     </section>
 
-    <!-- Page 5: Build setup -->
+    <!-- Page 5: Build 1 (Permissions) -->
     <section class="panel" data-page="4">
-      <p class="eyebrow">Build 1 · Setup</p>
-      <h2>Get set up</h2>
-      <p>Open your AI tool of choice: claude.ai, chatgpt.com, or gemini.google.com. Pick any topic you actually want a real document about, your work, a hobby, something you're planning.</p>
-      <label class="step-done"><input type="checkbox" id="step-1" class="track"> Done, I've got a tool open and a topic in mind</label>
-    </section>
-
-    <!-- Page 6: Build document -->
-    <section class="panel" data-page="5">
-      <p class="eyebrow">Build 1 · Prompt</p>
-      <h2>Build a real document</h2>
+      <p class="eyebrow">Build 1 · Permissions</p>
+      <h2>Turn on web access and compare</h2>
+      <p>Open your AI tool of choice. Check whether it has a web search toggle, and whether it offers a Chrome extension. Most major tools have at least one of the two.</p>
 
       <div class="viz-card">
         <p class="viz-label">Here's exactly what you're about to do</p>
         <div class="wf-window">
           <div class="wf-window-bar"><span class="wf-dot"></span><span class="wf-dot"></span><span class="wf-dot"></span><span class="wf-window-title">Your AI tool</span></div>
           <div class="wf-body">
-            <div class="wf-bubble-user" id="wfBubble">Write a one-page overview of my topic, with a summary, key points, and a next step...</div>
+            <div class="wf-bubble-user" id="wfBubble">Search the web for the latest guidance on my topic, and cite your sources...</div>
             <div class="wf-typing" id="wfTyping"><span></span><span></span><span></span></div>
             <div class="wf-file" id="wfFile">
-              <div class="wf-file-icon">📄</div>
+              <div class="wf-file-icon">🌐</div>
               <div>
-                <div class="wf-file-name">topic-overview.docx</div>
-                <div class="wf-file-sub">Ready to download</div>
+                <div class="wf-file-name">3 sources found</div>
+                <div class="wf-file-sub">Pulled from a live web search</div>
               </div>
-              <div class="wf-file-dl">Download</div>
+              <div class="wf-file-dl">View links</div>
             </div>
           </div>
           <div class="wf-input-row">
             <div class="wf-clip" id="wfClip">📋</div>
             <div class="wf-input">
               <span class="wf-input-ghost" id="wfInputGhost">Paste your prompt…</span>
-              <span class="wf-input-fill" id="wfInputFill">Write a one-page overview…</span>
+              <span class="wf-input-fill" id="wfInputFill">Search the web for the latest…</span>
             </div>
             <div class="wf-send" id="wfSend">➤</div>
           </div>
         </div>
       </div>
 
-      <p>Copy the prompt below into your AI tool, swapping in your own topic.</p>
+      <p>First, try this with web search turned on. Then turn it off and ask the same thing again.</p>
       <div class="prompt-box">
-        <pre id="prompt1">Write a one-page overview of [your topic] for someone who knows nothing about it. Include: a 2-sentence summary, three key points with one sentence each, and one recommended next step. Keep it skimmable, short paragraphs and bullets. Format it as a document I can download.</pre>
+        <pre id="prompt1">What's the latest news on [a topic you care about]? Include links to your sources.</pre>
         <button class="copy-btn" data-copy="prompt1" type="button">Copy prompt</button>
       </div>
       <details class="why">
-        <summary>Why this prompt works</summary>
-        <p>Naming the exact sections (summary, three points, next step) is what turns a vague ask into a document with real structure, instead of one long paragraph.</p>
+        <summary>Why this matters to notice</summary>
+        <p>With web access on, the model can pull in information from outside its training data and tell you where it came from. With it off, it can only work with what's already in the conversation, so it either declines or guesses from older training data.</p>
       </details>
-      <p>Download the file it gives you and open it. Skim it for anything that sounds off. Remember, it predicted this, it didn't verify it.</p>
+      <p>Next, if your tool has a Chrome extension (Claude and ChatGPT both ship one), install it and ask it to summarize the actual page you're currently looking at. Notice it can now see the live page, not just text you paste in.</p>
       <details class="troubleshoot">
-        <summary>🔧 Troubleshooting: it just printed the text in the chat</summary>
-        <p>Ask directly: "Turn that into a downloadable .docx." Most tools will produce the file on request even if they didn't the first time.</p>
+        <summary>🔧 Troubleshooting: no web search toggle or extension</summary>
+        <p>Not every plan includes it. Check your tool's settings menu for a toggle labeled "search" or "browsing," or check the Chrome Web Store directly for your tool's name, since extensions are sometimes released separately from the main product.</p>
       </details>
-      <p class="tie-back">Same idea as the concept page: the words in this document are the model's best predictions, not verified facts. Worth a skim before you trust it.</p>
-      <label class="step-done"><input type="checkbox" id="step-2" class="track"> Done</label>
+      <label class="step-done"><input type="checkbox" id="step-1" class="track"> Done, I compared web access on vs. off</label>
+    </section>
+
+    <!-- Page 6: Build 2 (Company constraints) -->
+    <section class="panel" data-page="5">
+      <p class="eyebrow">Build 2 · Company constraints</p>
+      <h2>Draft a real IT request</h2>
+      <p>Before drafting anything, spend five minutes on the audit: list every AI tool and connector you're currently approved to use at work. Check your admin console, your team's tool list, or just ask IT directly. Then pick one connector you don't have yet but actually want.</p>
+
+      <p>Copy the template below and fill in the brackets for that connector.</p>
+      <div class="prompt-box">
+        <pre id="prompt2">Subject: Access request: [tool or connector name] for [your name / team]
+
+Hi [IT contact / IT team],
+
+I'd like to request access to [tool or connector name, e.g. "the shared drive connector in Claude"].
+
+What it's for: [one sentence, e.g. "so it can summarize meeting notes stored in our shared drive instead of me copying them in by hand each week"].
+
+What data it would touch: [be specific and scoped, e.g. "read-only access to the Marketing shared drive. It would not need edit access, and it doesn't need to touch Finance or HR drives"].
+
+Who else should weigh in: [e.g. "looping in my manager, [name], and our security contact if there's a review step"].
+
+Happy to fill out whatever approval form this needs. Thanks!</pre>
+        <button class="copy-btn" data-copy="prompt2" type="button">Copy template</button>
+      </div>
+      <details class="why">
+        <summary>Why this template works</summary>
+        <p>Naming exactly what data the connector would touch, and scoping it down (read-only, one drive, not everything), is what lets an IT reviewer approve fast. A vague "can I get AI access to our systems" request usually bounces back with questions instead.</p>
+      </details>
+      <p>Send it, or save the draft if you're not ready to send it yet. Either way, you'll have a real request instead of a hypothetical one.</p>
+      <details class="troubleshoot">
+        <summary>🔧 Troubleshooting: not sure who to send it to</summary>
+        <p>Check your company's IT ticketing system first. If there isn't an obvious owner, ask your manager who approves new tool or connector requests.</p>
+      </details>
+      <label class="step-done"><input type="checkbox" id="step-2" class="track"> Done, I drafted a real request</label>
     </section>
 
     <!-- Page 7: Go further -->
     <section class="panel" data-page="6">
-      <p class="eyebrow">Build 1 · Stretch</p>
+      <p class="eyebrow">Stretch (optional)</p>
       <h2>Go further (optional)</h2>
-      <p>Same topic, two more formats. See how far one idea stretches when you just change what you ask for.</p>
+      <p>Not required, but worth trying if you've got a few more minutes.</p>
       <details class="further">
-        <summary>⚡ Turn it into a spreadsheet</summary>
+        <summary>⚡ Draft a second IT request</summary>
         <div class="prompt-box">
-          <pre id="prompt2">Turn this same topic into a spreadsheet: one row per key point, with columns for the point, why it matters, and a next action. Make it downloadable.</pre>
-          <button class="copy-btn" data-copy="prompt2" type="button">Copy prompt</button>
+          <pre id="prompt3">Reuse the template from the last page for a different connector, e.g. a Slack integration, a CRM, or a ticketing system. Fill in what data it would touch and who should weigh in, same as before.</pre>
+          <button class="copy-btn" data-copy="prompt3" type="button">Copy prompt</button>
         </div>
       </details>
       <details class="further">
-        <summary>⚡ Turn it into a slide outline</summary>
+        <summary>⚡ Run the audit for a teammate</summary>
         <div class="prompt-box">
-          <pre id="prompt3">Turn this same topic into a 3-slide outline: a title slide, one slide per key point, and a closing slide with the next step. Make it downloadable.</pre>
-          <button class="copy-btn" data-copy="prompt3" type="button">Copy prompt</button>
+          <pre id="prompt4">Ask a teammate what tools and connectors they currently have approved at work. Compare that against what they actually use day to day, and help them spot one gap worth requesting.</pre>
+          <button class="copy-btn" data-copy="prompt4" type="button">Copy prompt</button>
         </div>
       </details>
       <label class="step-done"><input type="checkbox" id="step-3" class="track"> Done, or skipping for now</label>
@@ -501,18 +544,18 @@
     <section class="panel" data-page="7">
       <p class="eyebrow">Wrap up</p>
       <h2>Nice work</h2>
-      <p>You saw how a model builds an answer one predicted word at a time, then used that same mechanic to produce a real document.</p>
+      <p>You covered what an AI tool can access, then put it to work on a real task and a real request.</p>
       <ul class="callout-list">
-        <li>It predicts the next word, it doesn't search or look things up</li>
-        <li>You watched that prediction happen live in the demo</li>
-        <li>You built a working prompt that turned into a real, reusable document</li>
+        <li>Learned the four permission modes: tool use, web access, computer control, and data or file access</li>
+        <li>Compared them on a real task, and saw what changed as each one turned on</li>
+        <li>Drafted a real IT request to get a new connector approved</li>
       </ul>
       <div class="wrap-actions">
         <button class="btn-primary" id="completeBtn" type="button">Mark lesson complete</button>
         <span class="save-note" id="saveNote">Saved automatically on this device.</span>
       </div>
       <div class="next-lesson">
-        <strong>Next up:</strong> Lesson 2 covers images, voice, and video with AI. Same core idea, three new kinds of output.
+        <strong>Next up:</strong> classifying and sanitizing the data you actually put into AI.
       </div>
     </section>
   </main>
@@ -527,10 +570,8 @@
 
 <script>
 (function () {
-  var STORAGE_KEY = 'leland-lesson-aibp-l0-1-1';
-  // CONTENT: one short label per page, in order, matching the data-page panels below.
-  // Add/remove entries if you add/remove pages -- see references/page-patterns.md.
-  var PAGE_TITLES = ['Welcome', 'Concept', 'Demo', 'Check', 'Step 1', 'Step 2', 'Step 3', 'Wrap up'];
+  var STORAGE_KEY = 'leland-lesson-aibp-l0-6-1';
+  var PAGE_TITLES = ['Welcome', 'Concept', 'Demo', 'Check', 'Build 1', 'Build 2', 'Stretch', 'Wrap up'];
   var LAST_PAGE = PAGE_TITLES.length - 1;
   var TRACK_IDS = ['step-1', 'step-2', 'step-3'];
 
@@ -644,7 +685,7 @@
     conceptGen++;
     workflowGen++;
     if (i === 1) runConceptAnim(conceptGen);
-    if (i === 5) runWorkflowAnim(workflowGen);
+    if (i === 4) runWorkflowAnim(workflowGen);
   }
 
   async function runConceptAnim(myGen) {
@@ -655,16 +696,16 @@
     var candEl = document.getElementById('animCandidates');
     if (!sentenceEl || !candEl) return;
     var WORDS = [
-      { word: 'It', distractors: ['She', 'We'] },
-      { word: 'predicts', distractors: ['searches', 'remembers'] },
-      { word: 'the', distractors: ['a', 'your'] },
-      { word: 'next', distractors: ['random', 'best'] },
-      { word: 'word,', distractors: ['fact,', 'answer,'] },
-      { word: 'one', distractors: ['every', 'no'] },
-      { word: 'word', distractors: ['page', 'topic'] },
-      { word: 'at', distractors: ['near', 'past'] },
-      { word: 'a', distractors: ['the', 'each'] },
-      { word: 'time.', distractors: ['once.', 'glance.'] }
+      { word: 'Know', distractors: ['Guess', 'Assume'] },
+      { word: 'what', distractors: ['when', 'why'] },
+      { word: 'it', distractors: ['they', 'this'] },
+      { word: 'can', distractors: ['might', 'should'] },
+      { word: 'see', distractors: ['do', 'say'] },
+      { word: 'before', distractors: ['after', 'while'] },
+      { word: 'you', distractors: ['it', 'they'] },
+      { word: 'let', distractors: ['make', 'ask'] },
+      { word: 'it', distractors: ['them', 'you'] },
+      { word: 'look.', distractors: ['work.', 'act.'] }
     ];
 
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -804,58 +845,51 @@
     });
   });
 
-  // CONTENT: this whole block (DEMO_TABLE / GENERIC_BY_LAST_WORD / FALLBACK / predict() / runDemo())
-  // is the page-3 example demo -- next-word prediction. If your lesson's demo is a different mechanic,
-  // replace predict() and runDemo() with your own logic; keep the same #demoInput/#demoBtn/#demoResults
-  // ids so the existing CSS and event wiring keep working. Delete this block and page 3 entirely if the
-  // lesson doesn't have a hands-on demo.
-  var DEMO_TABLE = {
-    'the best way to learn is to': [['practice', 34], ['try', 22], ['build', 19], ['ask', 13], ['read', 12]],
-    'i think ai is': [['exciting', 28], ['powerful', 24], ['useful', 20], ['changing', 16], ['overrated', 12]],
-    'the future of work will': [['change', 31], ['depend', 23], ['require', 20], ['evolve', 15], ['shrink', 11]],
-    'once upon a': [['time', 71], ['dream', 12], ['midnight', 9], ['star', 5], ['hill', 3]]
+  // CONTENT: page-3 demo -- click-to-compare across three permission scopes for the same task
+  // ("Summarize this quarterly report"). Each scope shows a different result card in #demoResults.
+  var SCOPE_DATA = {
+    chat: {
+      label: 'Chat only',
+      lines: [
+        'It can only work with text you paste directly into the conversation.',
+        'You\'d need to copy the whole report in first. No upload, no outside lookup.',
+        'Result: a summary of whatever you pasted, nothing more, nothing less.'
+      ]
+    },
+    file: {
+      label: '+ File access',
+      lines: [
+        'It can now read an uploaded file or a connected document directly.',
+        'Upload the report as a PDF or docx and it reads the actual file, tables included.',
+        'Result: a summary based on the real document, no manual copy-paste needed.'
+      ]
+    },
+    web: {
+      label: '+ Web access',
+      lines: [
+        'On top of reading the file, it can now reach outside sources too.',
+        'It can pull in this quarter\'s market context or a competitor\'s numbers to compare against.',
+        'Result: a summary plus outside context, with sources it can cite.'
+      ]
+    }
   };
-  var GENERIC_BY_LAST_WORD = {
-    'to': [['learn', 26], ['build', 22], ['understand', 18], ['create', 17], ['improve', 17]],
-    'is': [['important', 24], ['useful', 22], ['different', 20], ['changing', 18], ['complex', 16]],
-    'a': [['good', 26], ['great', 21], ['new', 20], ['simple', 17], ['common', 16]],
-    'the': [['best', 24], ['first', 21], ['most', 20], ['same', 18], ['whole', 17]],
-    'and': [['then', 26], ['also', 22], ['finally', 20], ['yet', 17], ['still', 15]]
-  };
-  var FALLBACK = [['it', 24], ['this', 21], ['that', 19], ['the', 18], ['a', 18]];
 
-  function normalize(s) { return s.trim().toLowerCase().replace(/[^\w\s]/g, ''); }
-  function predict(text) {
-    var norm = normalize(text);
-    if (!norm) return FALLBACK;
-    if (DEMO_TABLE[norm]) return DEMO_TABLE[norm];
-    var words = norm.split(/\s+/);
-    var last = words[words.length - 1];
-    if (GENERIC_BY_LAST_WORD[last]) return GENERIC_BY_LAST_WORD[last];
-    var seed = (norm.length * 7) % FALLBACK.length;
-    return FALLBACK.slice(seed).concat(FALLBACK.slice(0, seed));
-  }
-
-  document.getElementById('demoBtn').addEventListener('click', runDemo);
-  document.getElementById('demoInput').addEventListener('keydown', function (e) {
-    if (e.key === 'Enter') runDemo();
+  var scopeButtons = document.querySelectorAll('.demo-scope-btn');
+  scopeButtons.forEach(function (btn) {
+    btn.addEventListener('click', function () { runDemo(btn.dataset.scope, btn); });
   });
-  function runDemo() {
-    var input = document.getElementById('demoInput');
-    var results = predict(input.value);
+  function runDemo(scope, activeBtn) {
+    scopeButtons.forEach(function (b) { b.classList.toggle('active', b === activeBtn); });
+    var data = SCOPE_DATA[scope];
     var container = document.getElementById('demoResults');
     container.innerHTML = '';
-    results.forEach(function (pair) {
-      var row = document.createElement('div');
-      row.className = 'demo-result-row';
-      row.innerHTML =
-        '<span class="demo-word">' + pair[0] + '</span>' +
-        '<span class="demo-bar-track"><span class="demo-bar-fill" style="width:' + pair[1] + '%"></span></span>' +
-        '<span class="demo-pct">' + pair[1] + '%</span>';
-      container.appendChild(row);
-    });
+    var card = document.createElement('div');
+    card.className = 'demo-scope-card';
+    card.innerHTML = '<p class="demo-scope-title">' + data.label + '</p>' +
+      data.lines.map(function (l) { return '<p class="demo-scope-line">' + l + '</p>'; }).join('');
+    container.appendChild(card);
     document.getElementById('demoHint').textContent =
-      'A real model ranks tens of thousands of candidate words this way, every single word it writes.';
+      'Same request every time. What changes is only what the tool is allowed to reach.';
     if (!state.demoTried) {
       state.demoTried = true;
       persist();
