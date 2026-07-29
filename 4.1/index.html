@@ -1,5 +1,5 @@
 <meta charset="utf-8">
-<title>How AI Thinks, Then Build a Document · Lesson 1</title>
+<title>Give AI Context: Upload Files · Lesson 4</title>
 <link rel="icon" type="image/svg+xml" href="https://lebrain.joinleland.com/files/leland-icon-black">
 <style>
   @font-face {
@@ -345,7 +345,7 @@
         <img class="logo-light" src="https://lebrain.joinleland.com/files/leland-wordmark-black" alt="" />
         <img class="logo-dark" src="https://lebrain.joinleland.com/files/leland-wordmark-white" alt="" />
       </div>
-      <div class="crumbs">AI Builder Foundations · Lesson 1 of 6</div>
+      <div class="crumbs">AI Builder Foundations · Lesson 4 of 6</div>
     </div>
     <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
     <div class="progress-label" id="progressLabel">Step 1 of 8 · Welcome</div>
@@ -356,49 +356,58 @@
   <main>
     <!-- Page 1: Welcome -->
     <section class="panel" data-page="0">
-      <p class="eyebrow">Lesson 1 · How AI Thinks, Then Build</p>
-      <h1>Learn how AI predicts text, then put it to work on a real document.</h1>
+      <p class="eyebrow">Lesson 4 · Give AI Context: Upload Files</p>
+      <h1>AI is a lot more useful once it can see the real thing, not just your description of it.</h1>
       <p class="viz-label" style="margin-top: 28px;">What you'll learn</p>
       <ul class="callout-list">
-        <li>How a large language model actually generates an answer, one word at a time</li>
-        <li>What that prediction looks like happening live, in a simple demo you control</li>
-        <li>How to write a prompt that turns into a real, working document</li>
+        <li>How AI actually reads a file you upload, and what it does with it</li>
+        <li>What's safe to upload and what you should keep off of it</li>
+        <li>How to get real value out of a document, a photo, and a spreadsheet</li>
       </ul>
     </section>
 
     <!-- Page 2: Concept -->
     <section class="panel" data-page="1">
       <p class="eyebrow">Concept</p>
-      <h2>What a chatbot is actually doing</h2>
-      <h3 style="margin-bottom: 14px;">It predicts the next word. It doesn't look anything up.</h3>
-      <p>It's trained on a huge amount of text, and learned which word tends to come next given everything before it. Every reply, including this sentence, gets built one predicted word at a time.</p>
+      <h2>Show it the file instead of describing it</h2>
+      <h3 style="margin-bottom: 14px;">Upload a file and AI reads all of it, instead of guessing from what you typed.</h3>
+      <p>Once it has the actual content in front of it, it can work with what's really there, not with your summary of it.</p>
 
       <div class="viz-card">
-        <p class="viz-label">Watch a sentence get built, one predicted word at a time</p>
+        <p class="viz-label">The one-line version of this whole lesson</p>
         <div class="anim-sentence" id="animSentence"><span class="anim-cursor">|</span></div>
         <div class="anim-candidates" id="animCandidates"></div>
       </div>
 
+      <h3 style="margin-top: 26px;">Documents</h3>
+      <p>Upload a resume, a draft, a contract, whatever, and AI reads the full text into what it's working with. It can quote a specific line back to you, summarize the whole thing, or tell you what's weak in it. It's reacting to your actual words, not to a paraphrase you typed in the chat box.</p>
+
+      <h3 style="margin-top: 22px;">Images and spreadsheets</h3>
+      <p>Same idea, two more file types. Show it a photo and it can describe what's in the frame or pull out a specific detail, like the total on a receipt or the text on a whiteboard. Give it a spreadsheet and it can summarize what's in the rows or point out a pattern, without you retyping any of the data yourself.</p>
+
       <ul class="callout-list">
-        <li>It has no memory between chats unless you tell it again</li>
-        <li>Because it's predicting rather than fact-checking, it can sound confident and still be wrong</li>
-        <li>The more specific your prompt, the better its predictions get</li>
+        <li>Very long files sometimes get summarized rather than read in full, so it's worth checking what it actually picked up</li>
+        <li>A scanned image saved as a PDF can trip it up. Plain text or a real, selectable PDF works better</li>
+        <li>Say what you want done with the file. Attaching it and asking "thoughts?" gets a weaker answer than a specific ask</li>
       </ul>
     </section>
 
     <!-- Page 3: Demo -->
     <section class="panel" data-page="2">
       <p class="eyebrow">Interactive demo</p>
-      <h2>Try it yourself</h2>
-      <p>Type the start of a sentence and press Predict to see the next word ranked by likelihood, the same way a real model does it before it writes anything.</p>
+      <h2>Safe to upload, or not?</h2>
+      <p>Three real examples. Decide for each one, then see the reasoning either way.</p>
       <div class="demo-card">
-        <h3>Next-word predictor</h3>
-        <p class="demo-caption">Try: "the best way to learn is to" (or write your own)</p>
+        <h3 id="demoItemLabel">Example 1 of 3</h3>
+        <p class="demo-caption" id="demoItemText"></p>
         <div class="demo-row">
-          <input id="demoInput" type="text" placeholder="Start a sentence…" />
-          <button class="btn-primary" id="demoBtn" type="button">Predict</button>
+          <button class="btn-primary" id="demoSafeBtn" type="button">Safe to upload</button>
+          <button class="btn-secondary" id="demoRiskyBtn" type="button">Risky, keep it private</button>
         </div>
-        <div class="demo-results" id="demoResults"></div>
+        <p class="quiz-feedback" id="demoFeedback"></p>
+        <div class="demo-row" style="margin-top: 4px;">
+          <button class="btn-secondary" id="demoNextBtn" type="button" style="display:none;">Next example</button>
+        </div>
         <p class="demo-hint" id="demoHint"></p>
       </div>
     </section>
@@ -408,11 +417,11 @@
       <p class="eyebrow">Quick check</p>
       <h2>Before you move on...</h2>
       <span class="quiz-badge">Quiz · 1 question</span>
-      <p class="q">When you ask a chatbot a question, what is it actually doing to generate the answer?</p>
+      <p class="q">Which of these is fine to upload to a general AI tool without checking with anyone first?</p>
       <div class="quiz" id="quiz">
-        <button type="button" data-correct="false" data-explain="Most chatbots aren't browsing the live web by default. It's generating a reply word by word from what it learned during training, not fetching a fresh page.">Searching the internet in real time</button>
-        <button type="button" data-correct="true" data-explain="Right. It picks the single most probable next word given everything so far, then repeats that, one word at a time, until the reply is done.">Predicting the most likely next word, over and over</button>
-        <button type="button" data-correct="false" data-explain="There's no lookup table of correct answers behind it. That's exactly why it can state something wrong with total confidence: it's predicting, not retrieving.">Looking the answer up in a fixed database of facts</button>
+        <button type="button" data-correct="true" data-explain="Right. It's about to be public anyway, so there's nothing here that uploading exposes.">A blog draft that goes live on the company's public website next week</button>
+        <button type="button" data-correct="false" data-explain="This is someone else's personal data. A routine business document turns risky the moment it names a person along with private details, like a card number, that they haven't agreed to share.">A teammate's expense report, including their home address and the last four digits of their card</button>
+        <button type="button" data-correct="false" data-explain="Not personal, not public either. 'Internal use only' doesn't automatically mean 'don't upload,' but it does mean checking your company's own rules on approved AI tools before you do it by habit.">An internal project roadmap marked "internal use only," with launch dates but no financial or personal data</button>
       </div>
       <p class="quiz-feedback" id="quizFeedback"></p>
     </section>
@@ -420,27 +429,35 @@
     <!-- Page 5: Build setup -->
     <section class="panel" data-page="4">
       <p class="eyebrow">Build 1 · Setup</p>
-      <h2>Get set up</h2>
-      <p>Open your AI tool of choice: claude.ai, chatgpt.com, or gemini.google.com. Pick any topic you actually want a real document about, your work, a hobby, something you're planning.</p>
-      <label class="step-done"><input type="checkbox" id="step-1" class="track"> Done, I've got a tool open and a topic in mind</label>
+      <h2>Get a document ready</h2>
+      <p>Open your AI tool of choice: claude.ai, chatgpt.com, or gemini.google.com. Then find a real document you want a second opinion on. A resume, a draft you're revising, a plan you're not sure holds up. Something with actual flaws beats something already polished, since that's where AI's feedback is worth the most.</p>
+      <p>Not ready to upload something of your own? That's fine. Download the practice file below instead.</p>
+      <div class="demo-card">
+        <h3>Practice file: a deliberately messy resume</h3>
+        <p class="demo-caption">Not a real person. Built to have real problems: inconsistent formatting, vague bullet points that don't show any real impact, an unexplained gap, and a couple of typos. Good material for practicing a critique, since there's plenty to actually find.</p>
+        <div class="demo-row">
+          <button class="btn-secondary" id="downloadSampleBtn" type="button">Download sample resume (.txt)</button>
+        </div>
+      </div>
+      <label class="step-done"><input type="checkbox" id="step-1" class="track"> Done, I've got a document ready (mine or the sample)</label>
     </section>
 
     <!-- Page 6: Build document -->
     <section class="panel" data-page="5">
       <p class="eyebrow">Build 1 · Prompt</p>
-      <h2>Build a real document</h2>
+      <h2>Get a real review</h2>
 
       <div class="viz-card">
         <p class="viz-label">Here's exactly what you're about to do</p>
         <div class="wf-window">
           <div class="wf-window-bar"><span class="wf-dot"></span><span class="wf-dot"></span><span class="wf-dot"></span><span class="wf-window-title">Your AI tool</span></div>
           <div class="wf-body">
-            <div class="wf-bubble-user" id="wfBubble">Write a one-page overview of my topic, with a summary, key points, and a next step...</div>
+            <div class="wf-bubble-user" id="wfBubble">Review this resume. Tell me the 3 biggest weaknesses first, be blunt...</div>
             <div class="wf-typing" id="wfTyping"><span></span><span></span><span></span></div>
             <div class="wf-file" id="wfFile">
               <div class="wf-file-icon">📄</div>
               <div>
-                <div class="wf-file-name">topic-overview.docx</div>
+                <div class="wf-file-name">resume-review-notes.docx</div>
                 <div class="wf-file-sub">Ready to download</div>
               </div>
               <div class="wf-file-dl">Download</div>
@@ -450,48 +467,58 @@
             <div class="wf-clip" id="wfClip">📋</div>
             <div class="wf-input">
               <span class="wf-input-ghost" id="wfInputGhost">Paste your prompt…</span>
-              <span class="wf-input-fill" id="wfInputFill">Write a one-page overview…</span>
+              <span class="wf-input-fill" id="wfInputFill">Review this resume. Be blunt…</span>
             </div>
             <div class="wf-send" id="wfSend">➤</div>
           </div>
         </div>
       </div>
 
-      <p>Copy the prompt below into your AI tool, swapping in your own topic.</p>
+      <p>Upload your document (or the sample), then paste the prompt below, swapping in what it actually is.</p>
       <div class="prompt-box">
-        <pre id="prompt1">Write a one-page overview of [your topic] for someone who knows nothing about it. Include: a 2-sentence summary, three key points with one sentence each, and one recommended next step. Keep it skimmable, short paragraphs and bullets. Format it as a document I can download.</pre>
+        <pre id="prompt1">Here's my [resume / draft / plan]. Review it like a critical, experienced [hiring manager / editor / advisor] would. Tell me: the 3 biggest weaknesses, one sentence each. What's genuinely working, if anything. One concrete rewrite of the single weakest section. Be specific and blunt. Don't just tell me it looks fine.</pre>
         <button class="copy-btn" data-copy="prompt1" type="button">Copy prompt</button>
       </div>
       <details class="why">
         <summary>Why this prompt works</summary>
-        <p>Naming the exact sections (summary, three points, next step) is what turns a vague ask into a document with real structure, instead of one long paragraph.</p>
+        <p>Naming a specific critical role (hiring manager, editor) pushes the response past generic praise. Asking for the weaknesses before anything else is what actually gets you feedback worth acting on.</p>
       </details>
-      <p>Download the file it gives you and open it. Skim it for anything that sounds off. Remember, it predicted this, it didn't verify it.</p>
+      <p>Read the feedback against the actual document. It has your real words in front of it now, not a summary of them, so a specific critique is a good sign it actually read the thing.</p>
       <details class="troubleshoot">
-        <summary>🔧 Troubleshooting: it just printed the text in the chat</summary>
-        <p>Ask directly: "Turn that into a downloadable .docx." Most tools will produce the file on request even if they didn't the first time.</p>
+        <summary>🔧 Troubleshooting: the feedback is all compliments</summary>
+        <p>Push back directly: "Stop being nice. What would make a reviewer reject this?" Most tools get noticeably sharper on the second ask.</p>
       </details>
-      <p class="tie-back">Same idea as the concept page: the words in this document are the model's best predictions, not verified facts. Worth a skim before you trust it.</p>
-      <label class="step-done"><input type="checkbox" id="step-2" class="track"> Done</label>
+      <label class="step-done"><input type="checkbox" id="step-2" class="track"> Done with the document review</label>
+
+      <h2 style="margin-top: 36px;">Build 2 · Images and data</h2>
+      <p>Same idea, two more file types. These are quick, since you already did the real work above.</p>
+
+      <h3>Upload a photo</h3>
+      <p>Find a photo with real information sitting in it: a receipt, a photo of a whiteboard from a meeting, a screenshot of a text thread. Upload it and ask AI to read it for you.</p>
+      <div class="prompt-box">
+        <pre id="prompt2">This is a photo of a receipt (or whiteboard, or screenshot). List everything on it as plain text: items, amounts, dates, names, whatever's there. Flag anything you genuinely can't read clearly instead of guessing at it.</pre>
+        <button class="copy-btn" data-copy="prompt2" type="button">Copy prompt</button>
+      </div>
+
+      <h3 style="margin-top: 22px;">Upload a spreadsheet</h3>
+      <p>Upload a spreadsheet you already have. A budget, an expense log, a tracker, anything with real rows in it.</p>
+      <div class="prompt-box">
+        <pre id="prompt3">Summarize this spreadsheet in plain language. What are the 3 biggest patterns or outliers in it? Point to specific rows or columns for each one, don't just describe the sheet in general terms.</pre>
+        <button class="copy-btn" data-copy="prompt3" type="button">Copy prompt</button>
+      </div>
+      <label class="step-done"><input type="checkbox" id="step-2b" class="track"> Done, tried at least one of the photo or spreadsheet prompts</label>
     </section>
 
     <!-- Page 7: Go further -->
     <section class="panel" data-page="6">
       <p class="eyebrow">Build 1 · Stretch</p>
       <h2>Go further (optional)</h2>
-      <p>Same topic, two more formats. See how far one idea stretches when you just change what you ask for.</p>
+      <p>Take the same document you just reviewed and have AI regenerate it a different way. Comparing the two versions side by side makes it obvious which changes actually helped.</p>
       <details class="further">
-        <summary>⚡ Turn it into a spreadsheet</summary>
+        <summary>⚡ Regenerate it a different way</summary>
         <div class="prompt-box">
-          <pre id="prompt2">Turn this same topic into a spreadsheet: one row per key point, with columns for the point, why it matters, and a next action. Make it downloadable.</pre>
-          <button class="copy-btn" data-copy="prompt2" type="button">Copy prompt</button>
-        </div>
-      </details>
-      <details class="further">
-        <summary>⚡ Turn it into a slide outline</summary>
-        <div class="prompt-box">
-          <pre id="prompt3">Turn this same topic into a 3-slide outline: a title slide, one slide per key point, and a closing slide with the next step. Make it downloadable.</pre>
-          <button class="copy-btn" data-copy="prompt3" type="button">Copy prompt</button>
+          <pre id="prompt4">Rewrite the [resume / draft / plan] you just reviewed, working in the feedback you gave. This time, make it [more concise / more formal / a different format, like a one-page summary instead of a full document]. Keep the same underlying facts, just change the tone and format.</pre>
+          <button class="copy-btn" data-copy="prompt4" type="button">Copy prompt</button>
         </div>
       </details>
       <label class="step-done"><input type="checkbox" id="step-3" class="track"> Done, or skipping for now</label>
@@ -501,18 +528,18 @@
     <section class="panel" data-page="7">
       <p class="eyebrow">Wrap up</p>
       <h2>Nice work</h2>
-      <p>You saw how a model builds an answer one predicted word at a time, then used that same mechanic to produce a real document.</p>
+      <p>You saw what uploading a file actually gives AI, tried sorting out what's safe to share, and put it to work on a document, a photo, and a spreadsheet.</p>
       <ul class="callout-list">
-        <li>It predicts the next word, it doesn't search or look things up</li>
-        <li>You watched that prediction happen live in the demo</li>
-        <li>You built a working prompt that turned into a real, reusable document</li>
+        <li>A document gives AI your real content to work with, not a guess based on your description of it</li>
+        <li>You learned what's fine to upload and what to keep off of it</li>
+        <li>You tried it on a document, a photo, and a spreadsheet</li>
       </ul>
       <div class="wrap-actions">
         <button class="btn-primary" id="completeBtn" type="button">Mark lesson complete</button>
         <span class="save-note" id="saveNote">Saved automatically on this device.</span>
       </div>
       <div class="next-lesson">
-        <strong>Next up:</strong> Lesson 2 covers images, voice, and video with AI. Same core idea, three new kinds of output.
+        <strong>Next up:</strong> Lesson 5, using AI to stay organized: your calendar and to-do list.
       </div>
     </section>
   </main>
@@ -527,12 +554,12 @@
 
 <script>
 (function () {
-  var STORAGE_KEY = 'leland-lesson-aibp-l0-1-1';
+  var STORAGE_KEY = 'leland-lesson-aibp-l0-4-1';
   // CONTENT: one short label per page, in order, matching the data-page panels below.
   // Add/remove entries if you add/remove pages -- see references/page-patterns.md.
   var PAGE_TITLES = ['Welcome', 'Concept', 'Demo', 'Check', 'Step 1', 'Step 2', 'Step 3', 'Wrap up'];
   var LAST_PAGE = PAGE_TITLES.length - 1;
-  var TRACK_IDS = ['step-1', 'step-2', 'step-3'];
+  var TRACK_IDS = ['step-1', 'step-2', 'step-2b', 'step-3'];
 
   var state = load();
   if (typeof state.page !== 'number') state.page = 0;
@@ -655,16 +682,15 @@
     var candEl = document.getElementById('animCandidates');
     if (!sentenceEl || !candEl) return;
     var WORDS = [
-      { word: 'It', distractors: ['She', 'We'] },
-      { word: 'predicts', distractors: ['searches', 'remembers'] },
+      { word: 'Show', distractors: ['Tell', 'Ask'] },
+      { word: 'it', distractors: ['us', 'me'] },
       { word: 'the', distractors: ['a', 'your'] },
-      { word: 'next', distractors: ['random', 'best'] },
-      { word: 'word,', distractors: ['fact,', 'answer,'] },
-      { word: 'one', distractors: ['every', 'no'] },
-      { word: 'word', distractors: ['page', 'topic'] },
-      { word: 'at', distractors: ['near', 'past'] },
-      { word: 'a', distractors: ['the', 'each'] },
-      { word: 'time.', distractors: ['once.', 'glance.'] }
+      { word: 'file.', distractors: ['story.', 'idea.'] },
+      { word: 'Stop', distractors: ['Keep', 'Try'] },
+      { word: 'describing', distractors: ['imagining', 'guessing'] },
+      { word: 'it', distractors: ['this', 'that'] },
+      { word: 'from', distractors: ['by', 'in'] },
+      { word: 'memory.', distractors: ['scratch.', 'hand.'] }
     ];
 
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -804,63 +830,106 @@
     });
   });
 
-  // CONTENT: this whole block (DEMO_TABLE / GENERIC_BY_LAST_WORD / FALLBACK / predict() / runDemo())
-  // is the page-3 example demo -- next-word prediction. If your lesson's demo is a different mechanic,
-  // replace predict() and runDemo() with your own logic; keep the same #demoInput/#demoBtn/#demoResults
-  // ids so the existing CSS and event wiring keep working. Delete this block and page 3 entirely if the
-  // lesson doesn't have a hands-on demo.
-  var DEMO_TABLE = {
-    'the best way to learn is to': [['practice', 34], ['try', 22], ['build', 19], ['ask', 13], ['read', 12]],
-    'i think ai is': [['exciting', 28], ['powerful', 24], ['useful', 20], ['changing', 16], ['overrated', 12]],
-    'the future of work will': [['change', 31], ['depend', 23], ['require', 20], ['evolve', 15], ['shrink', 11]],
-    'once upon a': [['time', 71], ['dream', 12], ['midnight', 9], ['star', 5], ['hill', 3]]
-  };
-  var GENERIC_BY_LAST_WORD = {
-    'to': [['learn', 26], ['build', 22], ['understand', 18], ['create', 17], ['improve', 17]],
-    'is': [['important', 24], ['useful', 22], ['different', 20], ['changing', 18], ['complex', 16]],
-    'a': [['good', 26], ['great', 21], ['new', 20], ['simple', 17], ['common', 16]],
-    'the': [['best', 24], ['first', 21], ['most', 20], ['same', 18], ['whole', 17]],
-    'and': [['then', 26], ['also', 22], ['finally', 20], ['yet', 17], ['still', 15]]
-  };
-  var FALLBACK = [['it', 24], ['this', 21], ['that', 19], ['the', 18], ['a', 18]];
+  // CONTENT: the page-3 demo here is a sort-the-item mechanic, not the template's default
+  // next-word predictor. Each item is a short real-world example the learner sorts into
+  // "safe" or "risky," then gets a specific explanation regardless of which they picked.
+  var DEMO_ITEMS = [
+    {
+      text: 'A guest blog post you wrote that’s already live on Medium.',
+      correct: 'safe',
+      safeExplain: 'Right. It’s already public. Uploading a copy doesn’t expose anything new.',
+      riskyExplain: 'Actually fine here. This is already live and public, so there’s nothing left to protect.'
+    },
+    {
+      text: 'A spreadsheet of customer complaints with full names, emails, and order numbers.',
+      correct: 'risky',
+      safeExplain: 'This one’s risky. Those are real customers’ names and contact details, and they didn’t agree to have their information pasted into an AI tool.',
+      riskyExplain: 'Right. This is other people’s personal data. Keep it off general AI tools unless your company has explicitly approved that use.'
+    },
+    {
+      text: 'Your team’s internal-only Q3 planning notes, no financial figures or names in them.',
+      correct: 'safe',
+      safeExplain: 'Reasonable call. Nothing personal or financial is in it, so most teams treat this as fine, but “internal only” is still worth a quick check against your company’s AI policy before it becomes a habit.',
+      riskyExplain: 'Worth being cautious, but this one usually clears the bar since there’s no financial or personal data in it. Still worth checking your company’s own policy on internal docs.'
+    }
+  ];
+  var demoIndex = 0;
 
-  function normalize(s) { return s.trim().toLowerCase().replace(/[^\w\s]/g, ''); }
-  function predict(text) {
-    var norm = normalize(text);
-    if (!norm) return FALLBACK;
-    if (DEMO_TABLE[norm]) return DEMO_TABLE[norm];
-    var words = norm.split(/\s+/);
-    var last = words[words.length - 1];
-    if (GENERIC_BY_LAST_WORD[last]) return GENERIC_BY_LAST_WORD[last];
-    var seed = (norm.length * 7) % FALLBACK.length;
-    return FALLBACK.slice(seed).concat(FALLBACK.slice(0, seed));
+  function renderDemoItem() {
+    var item = DEMO_ITEMS[demoIndex];
+    document.getElementById('demoItemLabel').textContent = 'Example ' + (demoIndex + 1) + ' of ' + DEMO_ITEMS.length;
+    document.getElementById('demoItemText').textContent = item.text;
+    document.getElementById('demoFeedback').textContent = '';
+    document.getElementById('demoHint').textContent = '';
+    document.getElementById('demoSafeBtn').disabled = false;
+    document.getElementById('demoRiskyBtn').disabled = false;
+    document.getElementById('demoNextBtn').style.display = 'none';
   }
 
-  document.getElementById('demoBtn').addEventListener('click', runDemo);
-  document.getElementById('demoInput').addEventListener('keydown', function (e) {
-    if (e.key === 'Enter') runDemo();
-  });
-  function runDemo() {
-    var input = document.getElementById('demoInput');
-    var results = predict(input.value);
-    var container = document.getElementById('demoResults');
-    container.innerHTML = '';
-    results.forEach(function (pair) {
-      var row = document.createElement('div');
-      row.className = 'demo-result-row';
-      row.innerHTML =
-        '<span class="demo-word">' + pair[0] + '</span>' +
-        '<span class="demo-bar-track"><span class="demo-bar-fill" style="width:' + pair[1] + '%"></span></span>' +
-        '<span class="demo-pct">' + pair[1] + '%</span>';
-      container.appendChild(row);
-    });
-    document.getElementById('demoHint').textContent =
-      'A real model ranks tens of thousands of candidate words this way, every single word it writes.';
-    if (!state.demoTried) {
-      state.demoTried = true;
-      persist();
-      renderChrome();
+  function answerDemo(choice) {
+    var item = DEMO_ITEMS[demoIndex];
+    document.getElementById('demoSafeBtn').disabled = true;
+    document.getElementById('demoRiskyBtn').disabled = true;
+    document.getElementById('demoFeedback').textContent = choice === 'safe' ? item.safeExplain : item.riskyExplain;
+    var isLast = demoIndex === DEMO_ITEMS.length - 1;
+    if (isLast) {
+      document.getElementById('demoHint').textContent = 'That’s all three. The pattern: already-public is fine, someone else’s personal data isn’t, and plain internal material usually clears the bar.';
+      if (!state.demoTried) {
+        state.demoTried = true;
+        persist();
+        renderChrome();
+      }
+    } else {
+      document.getElementById('demoNextBtn').style.display = '';
     }
+  }
+
+  document.getElementById('demoSafeBtn').addEventListener('click', function () { answerDemo('safe'); });
+  document.getElementById('demoRiskyBtn').addEventListener('click', function () { answerDemo('risky'); });
+  document.getElementById('demoNextBtn').addEventListener('click', function () {
+    demoIndex = Math.min(demoIndex + 1, DEMO_ITEMS.length - 1);
+    renderDemoItem();
+  });
+  renderDemoItem();
+
+  // CONTENT: builds a downloadable practice resume client-side, so a learner who'd rather
+  // not upload something personal has a real, deliberately-flawed file to use instead.
+  var SAMPLE_RESUME = [
+    'SAMPLE RESUME -- practice file, not a real person',
+    '',
+    'John Smith',
+    'Phone: 555-0182   Email: jsmith99@email.com',
+    '',
+    'Experience',
+    'ABC Company -- doing sales stuff, 2019 to Present',
+    '- Helped increase revenu for the company',
+    '- Was resposible for a team',
+    '',
+    'Retail Associate, QuickMart (2016-2018)',
+    '- did customer service',
+    '- Cash handling and other duties as assigned',
+    '',
+    '2018-2019: took time off',
+    '',
+    'Education',
+    'State University, business (didn\'t finish?)',
+    '',
+    'Skills: Microsoft office, team player, hard worker, communication'
+  ].join('\n');
+
+  var downloadBtn = document.getElementById('downloadSampleBtn');
+  if (downloadBtn) {
+    downloadBtn.addEventListener('click', function () {
+      var blob = new Blob([SAMPLE_RESUME], { type: 'text/plain' });
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement('a');
+      a.href = url;
+      a.download = 'sample-resume-for-practice.txt';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+    });
   }
 
   document.querySelectorAll('.copy-btn').forEach(function (btn) {

@@ -1,5 +1,5 @@
 <meta charset="utf-8">
-<title>How AI Thinks, Then Build a Document · Lesson 1</title>
+<title>Put AI to Work on Your Actual Life · Lesson 3</title>
 <link rel="icon" type="image/svg+xml" href="https://lebrain.joinleland.com/files/leland-icon-black">
 <style>
   @font-face {
@@ -272,6 +272,31 @@
   .demo-pct { width: 42px; text-align: right; color: var(--gray); font-variant-numeric: tabular-nums; font-size: 12.5px; }
   .demo-hint { margin-top: 14px; font-size: 12.5px; color: var(--gray); font-style: italic; }
 
+  /* demo page: mode-matching scavenger hunt */
+  .match-row { padding-bottom: 20px; margin-bottom: 20px; border-bottom: 1px solid var(--stroke); }
+  .match-row:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+  .match-task { font-weight: 500; font-size: 14.5px; margin-bottom: 10px; }
+  .match-btns { display: flex; flex-wrap: wrap; gap: 8px; }
+  .match-btns button {
+    font-family: var(--font-body); font-size: 13px; text-align: left;
+    background: var(--surface); border: 1px solid var(--stroke-strong); color: var(--ink);
+    padding: 8px 14px; border-radius: 999px; cursor: pointer;
+  }
+  .match-btns button.correct { border-color: var(--green); background: color-mix(in srgb, var(--green) 12%, var(--surface)); }
+  .match-btns button.incorrect { border-color: var(--red); background: color-mix(in srgb, var(--red) 12%, var(--surface)); }
+  .match-btns button:disabled { cursor: default; }
+  .match-feedback { margin-top: 8px; font-size: 13.5px; color: var(--ink-soft); min-height: 18px; }
+
+  /* self-check: reflective prompt with concrete options, not a graded quiz */
+  .selfcheck-btns { display: flex; flex-direction: column; gap: 8px; margin-top: 4px; }
+  .selfcheck-btns button {
+    text-align: left; font-family: var(--font-body); font-size: 14.5px;
+    background: var(--surface-raised); border: 1px solid var(--stroke-strong);
+    padding: 12px 16px; border-radius: 12px; cursor: pointer; color: var(--ink);
+  }
+  .selfcheck-btns button.selected { border-color: var(--yellow-hover); background: var(--yellow-xlight); }
+  .selfcheck-feedback { margin-top: 10px; font-size: 14px; color: var(--ink-soft); min-height: 20px; }
+
   /* checkpoint quiz */
   .q { font-weight: 500; font-size: 16px; }
   .quiz { display: flex; flex-direction: column; gap: 8px; margin-top: 4px; }
@@ -345,7 +370,7 @@
         <img class="logo-light" src="https://lebrain.joinleland.com/files/leland-wordmark-black" alt="" />
         <img class="logo-dark" src="https://lebrain.joinleland.com/files/leland-wordmark-white" alt="" />
       </div>
-      <div class="crumbs">AI Builder Foundations · Lesson 1 of 6</div>
+      <div class="crumbs">AI Builder Foundations · Lesson 3 of 6</div>
     </div>
     <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
     <div class="progress-label" id="progressLabel">Step 1 of 8 · Welcome</div>
@@ -356,50 +381,108 @@
   <main>
     <!-- Page 1: Welcome -->
     <section class="panel" data-page="0">
-      <p class="eyebrow">Lesson 1 · How AI Thinks, Then Build</p>
-      <h1>Learn how AI predicts text, then put it to work on a real document.</h1>
+      <p class="eyebrow">Lesson 3 · Put AI to Work on Your Actual Life</p>
+      <h1>AI can play different roles. Spotting which one your task needs is a skill on its own.</h1>
       <p class="viz-label" style="margin-top: 28px;">What you'll learn</p>
       <ul class="callout-list">
-        <li>How a large language model actually generates an answer, one word at a time</li>
-        <li>What that prediction looks like happening live, in a simple demo you control</li>
-        <li>How to write a prompt that turns into a real, working document</li>
+        <li>The four roles, or modes, AI can take on</li>
+        <li>How to match a task to the right mode</li>
+        <li>How to map your own recurring tasks to AI</li>
       </ul>
     </section>
 
     <!-- Page 2: Concept -->
     <section class="panel" data-page="1">
       <p class="eyebrow">Concept</p>
-      <h2>What a chatbot is actually doing</h2>
-      <h3 style="margin-bottom: 14px;">It predicts the next word. It doesn't look anything up.</h3>
-      <p>It's trained on a huge amount of text, and learned which word tends to come next given everything before it. Every reply, including this sentence, gets built one predicted word at a time.</p>
+      <h2>Same AI, different job</h2>
 
       <div class="viz-card">
-        <p class="viz-label">Watch a sentence get built, one predicted word at a time</p>
+        <p class="viz-label">The idea, one word at a time</p>
         <div class="anim-sentence" id="animSentence"><span class="anim-cursor">|</span></div>
         <div class="anim-candidates" id="animCandidates"></div>
       </div>
 
+      <h3 style="margin-top: 26px; margin-bottom: 10px;">Modes</h3>
+      <p>AI can take on a few different jobs depending on what you ask for. Naming the job gets you a better answer than just typing your task and hoping.</p>
       <ul class="callout-list">
-        <li>It has no memory between chats unless you tell it again</li>
-        <li>Because it's predicting rather than fact-checking, it can sound confident and still be wrong</li>
-        <li>The more specific your prompt, the better its predictions get</li>
+        <li><strong>Reviewer or editor.</strong> Checks or improves something you already made.</li>
+        <li><strong>Thought partner.</strong> Talks through a decision with you, out loud.</li>
+        <li><strong>Creator.</strong> Makes something from scratch when you're starting with nothing.</li>
+        <li><strong>Researcher.</strong> Gathers and synthesizes information you don't already have.</li>
+      </ul>
+
+      <h3 style="margin-top: 26px; margin-bottom: 10px;">Mapping your work</h3>
+      <p>Not every task is worth handing to AI. The ones that usually are share a few traits.</p>
+      <ul class="callout-list">
+        <li>It's repetitive: you've done a version of this task many times before</li>
+        <li>It's time-consuming but low-judgment: it takes a while, but doesn't need much of your specific expertise</li>
+        <li>It's something you'd delegate to a capable assistant, if you had one sitting next to you</li>
       </ul>
     </section>
 
     <!-- Page 3: Demo -->
     <section class="panel" data-page="2">
       <p class="eyebrow">Interactive demo</p>
-      <h2>Try it yourself</h2>
-      <p>Type the start of a sentence and press Predict to see the next word ranked by likelihood, the same way a real model does it before it writes anything.</p>
+      <h2>Match the task to the mode</h2>
+      <p>Five short tasks. Click the mode you think fits each one, then check the explanation.</p>
       <div class="demo-card">
-        <h3>Next-word predictor</h3>
-        <p class="demo-caption">Try: "the best way to learn is to" (or write your own)</p>
-        <div class="demo-row">
-          <input id="demoInput" type="text" placeholder="Start a sentence…" />
-          <button class="btn-primary" id="demoBtn" type="button">Predict</button>
+        <h3>Scavenger hunt: name the mode</h3>
+        <p class="demo-caption">Reviewer/editor, thought partner, creator, or researcher</p>
+
+        <div class="match-row" data-answered="false">
+          <p class="match-task">You drafted a project update and want someone to catch confusing parts before it goes out.</p>
+          <div class="match-btns">
+            <button type="button" data-correct="true" data-explain="Right. You already have a draft. The job here is checking and tightening something that exists, which is exactly reviewer/editor mode.">Reviewer/editor</button>
+            <button type="button" data-correct="false" data-explain="Thought partner is for talking through a decision. There's no decision here, just an existing draft that needs a second look.">Thought partner</button>
+            <button type="button" data-correct="false" data-explain="Creator mode starts from nothing. You already wrote the update, so there's nothing to create from scratch.">Creator</button>
+            <button type="button" data-correct="false" data-explain="Researcher gathers outside information. Nothing here needs new information, just a check on what you already wrote.">Researcher</button>
+          </div>
+          <p class="match-feedback"></p>
         </div>
-        <div class="demo-results" id="demoResults"></div>
-        <p class="demo-hint" id="demoHint"></p>
+
+        <div class="match-row" data-answered="false">
+          <p class="match-task">You're deciding whether to negotiate your offer and want to think out loud about the risk.</p>
+          <div class="match-btns">
+            <button type="button" data-correct="false" data-explain="There's nothing written yet to review here. This is a live decision, not an existing document.">Reviewer/editor</button>
+            <button type="button" data-correct="true" data-explain="Right. You're weighing a real decision and want to talk it through. That's what thought partner mode is for.">Thought partner</button>
+            <button type="button" data-correct="false" data-explain="Creator mode makes something from scratch. You're not asking AI to produce anything, you're asking it to help you think.">Creator</button>
+            <button type="button" data-correct="false" data-explain="This isn't about gathering outside facts. It's about working through your own tradeoffs out loud.">Researcher</button>
+          </div>
+          <p class="match-feedback"></p>
+        </div>
+
+        <div class="match-row" data-answered="false">
+          <p class="match-task">You need a first draft of a project brief, and you're starting from a blank page.</p>
+          <div class="match-btns">
+            <button type="button" data-correct="false" data-explain="There's nothing written yet, so there's nothing to review or edit. Reviewer mode needs a draft to start from.">Reviewer/editor</button>
+            <button type="button" data-correct="false" data-explain="You're not weighing a decision here. You just need a starting draft, which is a different job.">Thought partner</button>
+            <button type="button" data-correct="true" data-explain="Right. Blank page, nothing to start from. That's exactly what creator mode is for: producing a first version.">Creator</button>
+            <button type="button" data-correct="false" data-explain="Researcher gathers and synthesizes existing information. You don't need facts here, you need a draft.">Researcher</button>
+          </div>
+          <p class="match-feedback"></p>
+        </div>
+
+        <div class="match-row" data-answered="false">
+          <p class="match-task">You want a rundown of how three competitors price their product before your pricing meeting.</p>
+          <div class="match-btns">
+            <button type="button" data-correct="false" data-explain="There's nothing of yours to check or improve here. You need outside information, not a review.">Reviewer/editor</button>
+            <button type="button" data-correct="false" data-explain="This isn't a personal decision to talk through. It's a factual gap you need filled before the meeting.">Thought partner</button>
+            <button type="button" data-correct="false" data-explain="You're not starting a new document from scratch. You need existing information gathered and organized.">Creator</button>
+            <button type="button" data-correct="true" data-explain="Right. Gathering and synthesizing information you don't already have is exactly researcher mode.">Researcher</button>
+          </div>
+          <p class="match-feedback"></p>
+        </div>
+
+        <div class="match-row" data-answered="false">
+          <p class="match-task">Your presentation deck is done, but the ordering feels off and you want a second pair of eyes.</p>
+          <div class="match-btns">
+            <button type="button" data-correct="true" data-explain="Right. The deck already exists. You want feedback on structure and flow, which is reviewer/editor mode even without typos involved.">Reviewer/editor</button>
+            <button type="button" data-correct="false" data-explain="This isn't a decision you're weighing out loud, it's existing material that needs a critical read.">Thought partner</button>
+            <button type="button" data-correct="false" data-explain="The deck already exists, so there's nothing to create from scratch. This is about improving what's there.">Creator</button>
+            <button type="button" data-correct="false" data-explain="You don't need outside facts gathered here, you need a critical read of something you already built.">Researcher</button>
+          </div>
+          <p class="match-feedback"></p>
+        </div>
       </div>
     </section>
 
@@ -408,11 +491,12 @@
       <p class="eyebrow">Quick check</p>
       <h2>Before you move on...</h2>
       <span class="quiz-badge">Quiz · 1 question</span>
-      <p class="q">When you ask a chatbot a question, what is it actually doing to generate the answer?</p>
+      <p class="q">You want to update your resume bullet points so they're tighter and lead with results. You already wrote a draft. Which mode fits best?</p>
       <div class="quiz" id="quiz">
-        <button type="button" data-correct="false" data-explain="Most chatbots aren't browsing the live web by default. It's generating a reply word by word from what it learned during training, not fetching a fresh page.">Searching the internet in real time</button>
-        <button type="button" data-correct="true" data-explain="Right. It picks the single most probable next word given everything so far, then repeats that, one word at a time, until the reply is done.">Predicting the most likely next word, over and over</button>
-        <button type="button" data-correct="false" data-explain="There's no lookup table of correct answers behind it. That's exactly why it can state something wrong with total confidence: it's predicting, not retrieving.">Looking the answer up in a fixed database of facts</button>
+        <button type="button" data-correct="false" data-explain="Creator mode is for starting from nothing. You already have bullet points written, so there's no blank page here, just wording that needs tightening.">Creator</button>
+        <button type="button" data-correct="true" data-explain="Right. You have a draft already. This mode checks and tightens something that exists, which is exactly the job here.">Reviewer/editor</button>
+        <button type="button" data-correct="false" data-explain="Researcher mode gathers and synthesizes outside information. Nothing here needs new facts, just better wording of what you already wrote.">Researcher</button>
+        <button type="button" data-correct="false" data-explain="Thought partner mode is for talking through a decision you're weighing. There's no decision to make here, just existing text to sharpen.">Thought partner</button>
       </div>
       <p class="quiz-feedback" id="quizFeedback"></p>
     </section>
@@ -420,27 +504,28 @@
     <!-- Page 5: Build setup -->
     <section class="panel" data-page="4">
       <p class="eyebrow">Build 1 · Setup</p>
-      <h2>Get set up</h2>
-      <p>Open your AI tool of choice: claude.ai, chatgpt.com, or gemini.google.com. Pick any topic you actually want a real document about, your work, a hobby, something you're planning.</p>
-      <label class="step-done"><input type="checkbox" id="step-1" class="track"> Done, I've got a tool open and a topic in mind</label>
+      <h2>Pick a real task</h2>
+      <p>Think of one real task from your actual life this week: something you need to write, decide, make, or find out. Not a hypothetical, an actual thing on your plate.</p>
+      <p>Now decide which mode fits: reviewer/editor, thought partner, creator, or researcher.</p>
+      <label class="step-done"><input type="checkbox" id="step-1" class="track"> Done, I've picked a task and a mode</label>
     </section>
 
     <!-- Page 6: Build document -->
     <section class="panel" data-page="5">
       <p class="eyebrow">Build 1 · Prompt</p>
-      <h2>Build a real document</h2>
+      <h2>Put AI in that mode</h2>
 
       <div class="viz-card">
         <p class="viz-label">Here's exactly what you're about to do</p>
         <div class="wf-window">
           <div class="wf-window-bar"><span class="wf-dot"></span><span class="wf-dot"></span><span class="wf-dot"></span><span class="wf-window-title">Your AI tool</span></div>
           <div class="wf-body">
-            <div class="wf-bubble-user" id="wfBubble">Write a one-page overview of my topic, with a summary, key points, and a next step...</div>
+            <div class="wf-bubble-user" id="wfBubble">Act as a thought partner and help me think through whether to switch teams at work...</div>
             <div class="wf-typing" id="wfTyping"><span></span><span></span><span></span></div>
             <div class="wf-file" id="wfFile">
               <div class="wf-file-icon">📄</div>
               <div>
-                <div class="wf-file-name">topic-overview.docx</div>
+                <div class="wf-file-name">notes.docx</div>
                 <div class="wf-file-sub">Ready to download</div>
               </div>
               <div class="wf-file-dl">Download</div>
@@ -450,69 +535,90 @@
             <div class="wf-clip" id="wfClip">📋</div>
             <div class="wf-input">
               <span class="wf-input-ghost" id="wfInputGhost">Paste your prompt…</span>
-              <span class="wf-input-fill" id="wfInputFill">Write a one-page overview…</span>
+              <span class="wf-input-fill" id="wfInputFill">Act as a thought partner and help me…</span>
             </div>
             <div class="wf-send" id="wfSend">➤</div>
           </div>
         </div>
       </div>
 
-      <p>Copy the prompt below into your AI tool, swapping in your own topic.</p>
+      <p>Copy the prompt below into your AI tool, swapping in your own mode and task from the last page.</p>
       <div class="prompt-box">
-        <pre id="prompt1">Write a one-page overview of [your topic] for someone who knows nothing about it. Include: a 2-sentence summary, three key points with one sentence each, and one recommended next step. Keep it skimmable, short paragraphs and bullets. Format it as a document I can download.</pre>
+        <pre id="prompt1">Act as a [reviewer/editor, thought partner, creator, or researcher] for this: [describe your actual task in 1-2 sentences]. If you already have something written, I'll paste it below. If not, ask me what I'm trying to produce or decide before you start.</pre>
         <button class="copy-btn" data-copy="prompt1" type="button">Copy prompt</button>
       </div>
       <details class="why">
         <summary>Why this prompt works</summary>
-        <p>Naming the exact sections (summary, three points, next step) is what turns a vague ask into a document with real structure, instead of one long paragraph.</p>
+        <p>Naming the mode explicitly changes the kind of reply you get. Without it, AI defaults to just answering. A thought partner should ask you questions back before it weighs in. A creator should just produce a draft. Say which one you want.</p>
       </details>
-      <p>Download the file it gives you and open it. Skim it for anything that sounds off. Remember, it predicted this, it didn't verify it.</p>
+      <p>Read what comes back. If it jumped straight to an answer but you wanted thought-partner mode, that's a sign to nudge it.</p>
       <details class="troubleshoot">
-        <summary>🔧 Troubleshooting: it just printed the text in the chat</summary>
-        <p>Ask directly: "Turn that into a downloadable .docx." Most tools will produce the file on request even if they didn't the first time.</p>
+        <summary>🔧 Troubleshooting: it just answered instead of thinking with you</summary>
+        <p>Add a line: "Ask me clarifying questions before you respond." That one sentence is usually enough to shift it out of answer-mode.</p>
       </details>
-      <p class="tie-back">Same idea as the concept page: the words in this document are the model's best predictions, not verified facts. Worth a skim before you trust it.</p>
+      <p class="tie-back">Same four modes from the concept page. Naming one turns a generic reply into the kind of help you actually needed.</p>
       <label class="step-done"><input type="checkbox" id="step-2" class="track"> Done</label>
     </section>
 
-    <!-- Page 7: Go further -->
+    <!-- Page 7: Build 2 + optional stretch -->
     <section class="panel" data-page="6">
-      <p class="eyebrow">Build 1 · Stretch</p>
-      <h2>Go further (optional)</h2>
-      <p>Same topic, two more formats. See how far one idea stretches when you just change what you ask for.</p>
-      <details class="further">
-        <summary>⚡ Turn it into a spreadsheet</summary>
-        <div class="prompt-box">
-          <pre id="prompt2">Turn this same topic into a spreadsheet: one row per key point, with columns for the point, why it matters, and a next action. Make it downloadable.</pre>
-          <button class="copy-btn" data-copy="prompt2" type="button">Copy prompt</button>
-        </div>
+      <p class="eyebrow">Build 2 · Map your work</p>
+      <h2>Map your own recurring work</h2>
+      <p>List a handful of tasks you do regularly: weekly reports, scheduling, note-taking, first drafts, whatever comes up again and again. For each one, tag it AI-suited or not, using the traits from the concept page. Then note which mode it calls for.</p>
+
+      <p>If your list feels thin, have AI interview you. It's often better at spotting patterns in your own week than you are, since you're too close to it.</p>
+      <div class="prompt-box">
+        <pre id="prompt2">Interview me about my typical week and help me identify which of my tasks could be handed to an AI assistant. Ask me questions one at a time about what I do regularly, then summarize which tasks look AI-suited and which mode (reviewer/editor, thought partner, creator, or researcher) fits each one.</pre>
+        <button class="copy-btn" data-copy="prompt2" type="button">Copy prompt</button>
+      </div>
+      <details class="why">
+        <summary>Why this prompt works</summary>
+        <p>Being interviewed surfaces tasks you wouldn't think to list on your own. It's easy to forget the small recurring things once you're not staring at your calendar, and a question-by-question format catches more of them than a blank list ever does.</p>
       </details>
+
+      <p class="q" style="margin-top: 24px;">Quick self-check: which best describes most of your recurring tasks?</p>
+      <div class="selfcheck-btns" id="selfCheck">
+        <button type="button" data-feedback="That's a strong signal for delegating. Repetition is exactly what makes a task easy to hand off. Write a good prompt once, then reuse it.">Repetitive: I do the same kind of thing over and over</button>
+        <button type="button" data-feedback="Good candidate too. If a task doesn't need your specific judgment calls, an AI draft can save you the time even if you still check the result.">Time-consuming but low-judgment: takes a while, doesn't need much of my judgment</button>
+        <button type="button" data-feedback="Keep doing these yourself, at least for now. AI can still help you think them through in thought-partner mode, but the call should stay yours.">High-judgment: needs my specific expertise or relationships</button>
+      </div>
+      <p class="selfcheck-feedback" id="selfCheckFeedback"></p>
+
+      <p class="eyebrow" style="margin-top: 30px;">Stretch (optional)</p>
+      <p>Two ways to push this further. Neither is required.</p>
       <details class="further">
-        <summary>⚡ Turn it into a slide outline</summary>
+        <summary>⚡ Revisit your list in a week</summary>
         <div class="prompt-box">
-          <pre id="prompt3">Turn this same topic into a 3-slide outline: a title slide, one slide per key point, and a closing slide with the next step. Make it downloadable.</pre>
+          <pre id="prompt3">Here's the list of my recurring tasks and how I tagged them as AI-suited or not, from a week ago: [paste your list]. I actually tried handing off a couple of these. Help me check whether my original tags still hold up, or whether I misjudged any of them.</pre>
           <button class="copy-btn" data-copy="prompt3" type="button">Copy prompt</button>
         </div>
       </details>
-      <label class="step-done"><input type="checkbox" id="step-3" class="track"> Done, or skipping for now</label>
+      <details class="further">
+        <summary>⚡ Try the mode-matching exercise again</summary>
+        <div class="prompt-box">
+          <pre id="prompt4">Act as a [reviewer/editor, thought partner, creator, or researcher] for this: [describe a second real task]. If you already have something written, I'll paste it below. If not, ask me what I'm trying to produce or decide before you start.</pre>
+          <button class="copy-btn" data-copy="prompt4" type="button">Copy prompt</button>
+        </div>
+      </details>
+      <label class="step-done"><input type="checkbox" id="step-3" class="track"> Done, or skipping the stretch for now</label>
     </section>
 
     <!-- Page 8: Wrap up -->
     <section class="panel" data-page="7">
       <p class="eyebrow">Wrap up</p>
       <h2>Nice work</h2>
-      <p>You saw how a model builds an answer one predicted word at a time, then used that same mechanic to produce a real document.</p>
+      <p>You looked at the four modes AI can play, matched a real task from your life to one, and mapped your own recurring work to see where AI actually helps.</p>
       <ul class="callout-list">
-        <li>It predicts the next word, it doesn't search or look things up</li>
-        <li>You watched that prediction happen live in the demo</li>
-        <li>You built a working prompt that turned into a real, reusable document</li>
+        <li>Four modes: reviewer/editor, thought partner, creator, researcher</li>
+        <li>Matched a real task to the right mode and wrote a mode-framed prompt</li>
+        <li>Mapped your own recurring tasks and tagged which ones are AI-suited</li>
       </ul>
       <div class="wrap-actions">
         <button class="btn-primary" id="completeBtn" type="button">Mark lesson complete</button>
         <span class="save-note" id="saveNote">Saved automatically on this device.</span>
       </div>
       <div class="next-lesson">
-        <strong>Next up:</strong> Lesson 2 covers images, voice, and video with AI. Same core idea, three new kinds of output.
+        <strong>Next up:</strong> Lesson 4: giving AI real context by uploading files.
       </div>
     </section>
   </main>
@@ -527,7 +633,7 @@
 
 <script>
 (function () {
-  var STORAGE_KEY = 'leland-lesson-aibp-l0-1-1';
+  var STORAGE_KEY = 'leland-lesson-aibp-l0-3-2';
   // CONTENT: one short label per page, in order, matching the data-page panels below.
   // Add/remove entries if you add/remove pages -- see references/page-patterns.md.
   var PAGE_TITLES = ['Welcome', 'Concept', 'Demo', 'Check', 'Step 1', 'Step 2', 'Step 3', 'Wrap up'];
@@ -655,16 +761,14 @@
     var candEl = document.getElementById('animCandidates');
     if (!sentenceEl || !candEl) return;
     var WORDS = [
-      { word: 'It', distractors: ['She', 'We'] },
-      { word: 'predicts', distractors: ['searches', 'remembers'] },
+      { word: 'Same', distractors: ['One', 'Every'] },
+      { word: 'AI.', distractors: ['tool.', 'app.'] },
+      { word: 'Different', distractors: ['Similar', 'Random'] },
+      { word: 'job.', distractors: ['task.', 'name.'] },
+      { word: 'Pick', distractors: ['Skip', 'Ignore'] },
       { word: 'the', distractors: ['a', 'your'] },
-      { word: 'next', distractors: ['random', 'best'] },
-      { word: 'word,', distractors: ['fact,', 'answer,'] },
-      { word: 'one', distractors: ['every', 'no'] },
-      { word: 'word', distractors: ['page', 'topic'] },
-      { word: 'at', distractors: ['near', 'past'] },
-      { word: 'a', distractors: ['the', 'each'] },
-      { word: 'time.', distractors: ['once.', 'glance.'] }
+      { word: 'right', distractors: ['any', 'first'] },
+      { word: 'mode.', distractors: ['tool.', 'model.'] }
     ];
 
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -804,64 +908,40 @@
     });
   });
 
-  // CONTENT: this whole block (DEMO_TABLE / GENERIC_BY_LAST_WORD / FALLBACK / predict() / runDemo())
-  // is the page-3 example demo -- next-word prediction. If your lesson's demo is a different mechanic,
-  // replace predict() and runDemo() with your own logic; keep the same #demoInput/#demoBtn/#demoResults
-  // ids so the existing CSS and event wiring keep working. Delete this block and page 3 entirely if the
-  // lesson doesn't have a hands-on demo.
-  var DEMO_TABLE = {
-    'the best way to learn is to': [['practice', 34], ['try', 22], ['build', 19], ['ask', 13], ['read', 12]],
-    'i think ai is': [['exciting', 28], ['powerful', 24], ['useful', 20], ['changing', 16], ['overrated', 12]],
-    'the future of work will': [['change', 31], ['depend', 23], ['require', 20], ['evolve', 15], ['shrink', 11]],
-    'once upon a': [['time', 71], ['dream', 12], ['midnight', 9], ['star', 5], ['hill', 3]]
-  };
-  var GENERIC_BY_LAST_WORD = {
-    'to': [['learn', 26], ['build', 22], ['understand', 18], ['create', 17], ['improve', 17]],
-    'is': [['important', 24], ['useful', 22], ['different', 20], ['changing', 18], ['complex', 16]],
-    'a': [['good', 26], ['great', 21], ['new', 20], ['simple', 17], ['common', 16]],
-    'the': [['best', 24], ['first', 21], ['most', 20], ['same', 18], ['whole', 17]],
-    'and': [['then', 26], ['also', 22], ['finally', 20], ['yet', 17], ['still', 15]]
-  };
-  var FALLBACK = [['it', 24], ['this', 21], ['that', 19], ['the', 18], ['a', 18]];
-
-  function normalize(s) { return s.trim().toLowerCase().replace(/[^\w\s]/g, ''); }
-  function predict(text) {
-    var norm = normalize(text);
-    if (!norm) return FALLBACK;
-    if (DEMO_TABLE[norm]) return DEMO_TABLE[norm];
-    var words = norm.split(/\s+/);
-    var last = words[words.length - 1];
-    if (GENERIC_BY_LAST_WORD[last]) return GENERIC_BY_LAST_WORD[last];
-    var seed = (norm.length * 7) % FALLBACK.length;
-    return FALLBACK.slice(seed).concat(FALLBACK.slice(0, seed));
-  }
-
-  document.getElementById('demoBtn').addEventListener('click', runDemo);
-  document.getElementById('demoInput').addEventListener('keydown', function (e) {
-    if (e.key === 'Enter') runDemo();
-  });
-  function runDemo() {
-    var input = document.getElementById('demoInput');
-    var results = predict(input.value);
-    var container = document.getElementById('demoResults');
-    container.innerHTML = '';
-    results.forEach(function (pair) {
-      var row = document.createElement('div');
-      row.className = 'demo-result-row';
-      row.innerHTML =
-        '<span class="demo-word">' + pair[0] + '</span>' +
-        '<span class="demo-bar-track"><span class="demo-bar-fill" style="width:' + pair[1] + '%"></span></span>' +
-        '<span class="demo-pct">' + pair[1] + '%</span>';
-      container.appendChild(row);
+  // CONTENT: page-3 demo -- scavenger-hunt matching. Each .match-row has its own set of buttons,
+  // one carrying data-correct="true", each with a data-explain specific to that task + mode pair.
+  document.querySelectorAll('.match-row').forEach(function (row) {
+    var buttons = row.querySelectorAll('.match-btns button');
+    var feedback = row.querySelector('.match-feedback');
+    buttons.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        if (row.dataset.answered === 'true') return;
+        row.dataset.answered = 'true';
+        buttons.forEach(function (b) {
+          b.disabled = true;
+          if (b.dataset.correct === 'true') b.classList.add('correct');
+          else if (b === btn) b.classList.add('incorrect');
+        });
+        feedback.textContent = btn.dataset.explain;
+        if (!state.demoTried) {
+          state.demoTried = true;
+          persist();
+          renderChrome();
+        }
+      });
     });
-    document.getElementById('demoHint').textContent =
-      'A real model ranks tens of thousands of candidate words this way, every single word it writes.';
-    if (!state.demoTried) {
-      state.demoTried = true;
-      persist();
-      renderChrome();
-    }
-  }
+  });
+
+  // CONTENT: page-7 self-check -- a lightweight reflective prompt with concrete options, not the
+  // graded quiz. Clicking just shows feedback and highlights the pick; it doesn't gate progress.
+  var selfCheckButtons = document.querySelectorAll('#selfCheck button');
+  selfCheckButtons.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      selfCheckButtons.forEach(function (b) { b.classList.remove('selected'); });
+      btn.classList.add('selected');
+      document.getElementById('selfCheckFeedback').textContent = btn.dataset.feedback;
+    });
+  });
 
   document.querySelectorAll('.copy-btn').forEach(function (btn) {
     btn.addEventListener('click', function () {

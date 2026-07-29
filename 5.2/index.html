@@ -1,5 +1,5 @@
 <meta charset="utf-8">
-<title>How AI Thinks, Then Build a Document · Lesson 1</title>
+<title>Ship It and Graduate · Lesson 5</title>
 <link rel="icon" type="image/svg+xml" href="https://lebrain.joinleland.com/files/leland-icon-black">
 <style>
   @font-face {
@@ -329,6 +329,24 @@
   }
   .next-lesson strong { color: var(--ink); }
 
+  /* graduation callout -- the conversion moment on the wrap-up page */
+  .grad-callout {
+    margin-top: 28px; padding: 30px 28px; border-radius: 18px;
+    background: var(--yellow-xlight); border: 1px solid var(--yellow-hover);
+  }
+  .grad-callout .viz-label { margin-bottom: 10px; }
+  .grad-callout h3 { font-size: 23px; line-height: 1.25; margin-bottom: 10px; }
+  .grad-callout p { max-width: 60ch; }
+  .grad-cta {
+    display: inline-block; text-decoration: none;
+    font-family: var(--font-body); font-weight: 500; font-size: 15px;
+    background: var(--yellow); color: #1a1400;
+    padding: 13px 26px; border-radius: 999px;
+    transition: background .15s ease;
+  }
+  .grad-cta:hover { background: var(--yellow-hover); }
+  .grad-fine { font-size: 12px; color: var(--gray); margin: 14px 0 0; }
+
   /* footer nav */
   footer.nav {
     position: fixed; left: 0; right: 0; bottom: 0; z-index: 10;
@@ -345,7 +363,7 @@
         <img class="logo-light" src="https://lebrain.joinleland.com/files/leland-wordmark-black" alt="" />
         <img class="logo-dark" src="https://lebrain.joinleland.com/files/leland-wordmark-white" alt="" />
       </div>
-      <div class="crumbs">AI Builder Foundations · Lesson 1 of 6</div>
+      <div class="crumbs">AI Builder Foundations · Lesson 5 of 6</div>
     </div>
     <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
     <div class="progress-label" id="progressLabel">Step 1 of 8 · Welcome</div>
@@ -356,47 +374,42 @@
   <main>
     <!-- Page 1: Welcome -->
     <section class="panel" data-page="0">
-      <p class="eyebrow">Lesson 1 · How AI Thinks, Then Build</p>
-      <h1>Learn how AI predicts text, then put it to work on a real document.</h1>
+      <p class="eyebrow">Lesson 5 · Ship It and Graduate</p>
+      <h1>This is the finish line. Now make it a habit and show it off.</h1>
       <p class="viz-label" style="margin-top: 28px;">What you'll learn</p>
       <ul class="callout-list">
-        <li>How a large language model actually generates an answer, one word at a time</li>
-        <li>What that prediction looks like happening live, in a simple demo you control</li>
-        <li>How to write a prompt that turns into a real, working document</li>
+        <li>How to turn AI use into an ongoing habit instead of a one-off course exercise</li>
+        <li>What other learners have shared, for a little inspiration before you post your own</li>
+        <li>How to share something you built with the AI Builder community</li>
       </ul>
     </section>
 
     <!-- Page 2: Concept -->
     <section class="panel" data-page="1">
       <p class="eyebrow">Concept</p>
-      <h2>What a chatbot is actually doing</h2>
-      <h3 style="margin-bottom: 14px;">It predicts the next word. It doesn't look anything up.</h3>
-      <p>It's trained on a huge amount of text, and learned which word tends to come next given everything before it. Every reply, including this sentence, gets built one predicted word at a time.</p>
-
-      <div class="viz-card">
-        <p class="viz-label">Watch a sentence get built, one predicted word at a time</p>
-        <div class="anim-sentence" id="animSentence"><span class="anim-cursor">|</span></div>
-        <div class="anim-candidates" id="animCandidates"></div>
-      </div>
+      <h2>How to make AI usage a habit</h2>
+      <h3 style="margin-bottom: 14px;">A skill you don't use starts to fade. Use it in the same weekly moment and it won't.</h3>
+      <p>Pick one or two moments that already happen on a schedule, like prepping for a standing meeting or doing your weekly plan. Bring AI into that moment on purpose, every time, and the habit builds itself.</p>
 
       <ul class="callout-list">
-        <li>It has no memory between chats unless you tell it again</li>
-        <li>Because it's predicting rather than fact-checking, it can sound confident and still be wrong</li>
-        <li>The more specific your prompt, the better its predictions get</li>
+        <li>A big one-time project doesn't build a habit. A small recurring one does.</li>
+        <li>Tie it to something that already happens weekly, so you don't have to remember on your own.</li>
+        <li>If you skip a week, just pick it back up next week. The habit doesn't need to be perfect.</li>
       </ul>
     </section>
 
     <!-- Page 3: Demo -->
     <section class="panel" data-page="2">
-      <p class="eyebrow">Interactive demo</p>
-      <h2>Try it yourself</h2>
-      <p>Type the start of a sentence and press Predict to see the next word ranked by likelihood, the same way a real model does it before it writes anything.</p>
+      <p class="eyebrow">A little inspiration</p>
+      <h2>See what other learners built</h2>
+      <p>Before you post your own, take a look at a few things past learners have shared in the AI Builder gallery.</p>
       <div class="demo-card">
-        <h3>Next-word predictor</h3>
-        <p class="demo-caption">Try: "the best way to learn is to" (or write your own)</p>
-        <div class="demo-row">
-          <input id="demoInput" type="text" placeholder="Start a sentence…" />
-          <button class="btn-primary" id="demoBtn" type="button">Predict</button>
+        <h3>From the gallery</h3>
+        <p class="demo-caption">Click one to see what they posted.</p>
+        <div class="demo-row" id="galleryRow">
+          <button class="btn-secondary gallery-btn" type="button" data-desc="Cleaned up a messy resume with AI, then fact-checked every line before sending it out.">A cleaned-up resume</button>
+          <button class="btn-secondary gallery-btn" type="button" data-desc="Built a prompt that turns raw weekly notes into a formatted status report in under a minute.">An automated weekly report</button>
+          <button class="btn-secondary gallery-btn" type="button" data-desc="Made a small tool that renames photo files by date automatically, so Sunday cleanup takes ten minutes instead of an hour.">A small custom tool</button>
         </div>
         <div class="demo-results" id="demoResults"></div>
         <p class="demo-hint" id="demoHint"></p>
@@ -406,42 +419,42 @@
     <!-- Page 4: Checkpoint -->
     <section class="panel" data-page="3">
       <p class="eyebrow">Quick check</p>
-      <h2>Before you move on...</h2>
+      <h2>One last check</h2>
       <span class="quiz-badge">Quiz · 1 question</span>
-      <p class="q">When you ask a chatbot a question, what is it actually doing to generate the answer?</p>
+      <p class="q">Which of these is a good habit for continuing to use AI going forward?</p>
       <div class="quiz" id="quiz">
-        <button type="button" data-correct="false" data-explain="Most chatbots aren't browsing the live web by default. It's generating a reply word by word from what it learned during training, not fetching a fresh page.">Searching the internet in real time</button>
-        <button type="button" data-correct="true" data-explain="Right. It picks the single most probable next word given everything so far, then repeats that, one word at a time, until the reply is done.">Predicting the most likely next word, over and over</button>
-        <button type="button" data-correct="false" data-explain="There's no lookup table of correct answers behind it. That's exactly why it can state something wrong with total confidence: it's predicting, not retrieving.">Looking the answer up in a fixed database of facts</button>
+        <button type="button" data-correct="false" data-explain="That ties AI use to the course, and the course just ended. The habit needs a reason to continue on its own.">Only open it when a course assignment says to</button>
+        <button type="button" data-correct="true" data-explain="Right. Tying it to something that already happens on a schedule is what makes the habit stick.">Use it for the same recurring task every week, like prepping for a standing meeting</button>
+        <button type="button" data-correct="false" data-explain="Big projects are rare. A habit needs a small, regular moment, not an occasional emergency.">Wait until you have a big project that really needs it</button>
       </div>
       <p class="quiz-feedback" id="quizFeedback"></p>
     </section>
 
     <!-- Page 5: Build setup -->
     <section class="panel" data-page="4">
-      <p class="eyebrow">Build 1 · Setup</p>
-      <h2>Get set up</h2>
-      <p>Open your AI tool of choice: claude.ai, chatgpt.com, or gemini.google.com. Pick any topic you actually want a real document about, your work, a hobby, something you're planning.</p>
-      <label class="step-done"><input type="checkbox" id="step-1" class="track"> Done, I've got a tool open and a topic in mind</label>
+      <p class="eyebrow">Build · Setup</p>
+      <h2>Pick something to share</h2>
+      <p>Grab one thing you made during this course, or something new you built with AI recently. It doesn't need to be impressive. It just needs to be real and yours.</p>
+      <label class="step-done"><input type="checkbox" id="step-1" class="track"> Done, I've got something picked</label>
     </section>
 
     <!-- Page 6: Build document -->
     <section class="panel" data-page="5">
-      <p class="eyebrow">Build 1 · Prompt</p>
-      <h2>Build a real document</h2>
+      <p class="eyebrow">Build · Post it</p>
+      <h2>Post it to the AI Builder gallery</h2>
 
       <div class="viz-card">
         <p class="viz-label">Here's exactly what you're about to do</p>
         <div class="wf-window">
           <div class="wf-window-bar"><span class="wf-dot"></span><span class="wf-dot"></span><span class="wf-dot"></span><span class="wf-window-title">Your AI tool</span></div>
           <div class="wf-body">
-            <div class="wf-bubble-user" id="wfBubble">Write a one-page overview of my topic, with a summary, key points, and a next step...</div>
+            <div class="wf-bubble-user" id="wfBubble">Help me write a short gallery post about the resume cleanup I built...</div>
             <div class="wf-typing" id="wfTyping"><span></span><span></span><span></span></div>
             <div class="wf-file" id="wfFile">
               <div class="wf-file-icon">📄</div>
               <div>
-                <div class="wf-file-name">topic-overview.docx</div>
-                <div class="wf-file-sub">Ready to download</div>
+                <div class="wf-file-name">gallery-post-draft.txt</div>
+                <div class="wf-file-sub">Ready to paste into your post</div>
               </div>
               <div class="wf-file-dl">Download</div>
             </div>
@@ -450,48 +463,40 @@
             <div class="wf-clip" id="wfClip">📋</div>
             <div class="wf-input">
               <span class="wf-input-ghost" id="wfInputGhost">Paste your prompt…</span>
-              <span class="wf-input-fill" id="wfInputFill">Write a one-page overview…</span>
+              <span class="wf-input-fill" id="wfInputFill">Help me write a gallery post…</span>
             </div>
             <div class="wf-send" id="wfSend">➤</div>
           </div>
         </div>
       </div>
 
-      <p>Copy the prompt below into your AI tool, swapping in your own topic.</p>
+      <p>A good gallery post covers three things: what you built, what tool or prompt you used, and what you'd do differently next time. Copy the prompt below and swap in your own details to get a draft.</p>
       <div class="prompt-box">
-        <pre id="prompt1">Write a one-page overview of [your topic] for someone who knows nothing about it. Include: a 2-sentence summary, three key points with one sentence each, and one recommended next step. Keep it skimmable, short paragraphs and bullets. Format it as a document I can download.</pre>
+        <pre id="prompt1">Help me write a short gallery post about something I built with AI. Here's what I made: [describe what you built in one or two sentences]. Here's the tool or prompt I used: [paste your prompt or describe your approach]. Write it in three short parts: what it does, how I built it, and one thing I'd do differently next time. Keep the whole thing under 100 words and casual, not formal.</pre>
         <button class="copy-btn" data-copy="prompt1" type="button">Copy prompt</button>
       </div>
       <details class="why">
         <summary>Why this prompt works</summary>
-        <p>Naming the exact sections (summary, three points, next step) is what turns a vague ask into a document with real structure, instead of one long paragraph.</p>
+        <p>Naming the tool and the thing you'd fix is what makes a gallery post useful to the next person reading it, not just a highlight reel.</p>
       </details>
-      <p>Download the file it gives you and open it. Skim it for anything that sounds off. Remember, it predicted this, it didn't verify it.</p>
+      <p>Read over what it gives you, then post it to the gallery yourself. You know your own project better than the model does, so fix anything that's off before it goes up.</p>
       <details class="troubleshoot">
-        <summary>🔧 Troubleshooting: it just printed the text in the chat</summary>
-        <p>Ask directly: "Turn that into a downloadable .docx." Most tools will produce the file on request even if they didn't the first time.</p>
+        <summary>🔧 Troubleshooting: I don't remember my exact prompt</summary>
+        <p>Describe roughly what you asked for instead. "I asked it to reformat my resume and tighten the wording" is plenty.</p>
       </details>
-      <p class="tie-back">Same idea as the concept page: the words in this document are the model's best predictions, not verified facts. Worth a skim before you trust it.</p>
-      <label class="step-done"><input type="checkbox" id="step-2" class="track"> Done</label>
+      <label class="step-done"><input type="checkbox" id="step-2" class="track"> Done, I posted (or drafted my post)</label>
     </section>
 
     <!-- Page 7: Go further -->
     <section class="panel" data-page="6">
-      <p class="eyebrow">Build 1 · Stretch</p>
+      <p class="eyebrow">Build · Stretch</p>
       <h2>Go further (optional)</h2>
-      <p>Same topic, two more formats. See how far one idea stretches when you just change what you ask for.</p>
+      <p>One line, optional: write the commitment down so it's harder to skip.</p>
       <details class="further">
-        <summary>⚡ Turn it into a spreadsheet</summary>
+        <summary>⚡ Write your habit pitch</summary>
         <div class="prompt-box">
-          <pre id="prompt2">Turn this same topic into a spreadsheet: one row per key point, with columns for the point, why it matters, and a next action. Make it downloadable.</pre>
+          <pre id="prompt2">Help me write a one-line commitment for an AI habit I'll actually keep. Here's the recurring moment I'm tying it to: [e.g. prepping for my Monday team meeting]. Make it specific enough that I'd notice if I skipped it.</pre>
           <button class="copy-btn" data-copy="prompt2" type="button">Copy prompt</button>
-        </div>
-      </details>
-      <details class="further">
-        <summary>⚡ Turn it into a slide outline</summary>
-        <div class="prompt-box">
-          <pre id="prompt3">Turn this same topic into a 3-slide outline: a title slide, one slide per key point, and a closing slide with the next step. Make it downloadable.</pre>
-          <button class="copy-btn" data-copy="prompt3" type="button">Copy prompt</button>
         </div>
       </details>
       <label class="step-done"><input type="checkbox" id="step-3" class="track"> Done, or skipping for now</label>
@@ -500,19 +505,32 @@
     <!-- Page 8: Wrap up -->
     <section class="panel" data-page="7">
       <p class="eyebrow">Wrap up</p>
-      <h2>Nice work</h2>
-      <p>You saw how a model builds an answer one predicted word at a time, then used that same mechanic to produce a real document.</p>
+      <h2>Five lessons in. Nice work.</h2>
+      <p>You went from a first prompt to shipping real documents, images, and a small custom build. Now you've shared one of them with the community.</p>
       <ul class="callout-list">
-        <li>It predicts the next word, it doesn't search or look things up</li>
-        <li>You watched that prediction happen live in the demo</li>
-        <li>You built a working prompt that turned into a real, reusable document</li>
+        <li>You built a habit, not just finished a course</li>
+        <li>You saw what other learners are making, for a little inspiration</li>
+        <li>You shared something real in the AI Builder gallery</li>
       </ul>
+
+      <div class="viz-card">
+        <p class="viz-label">Five lessons, one sentence</p>
+        <div class="anim-sentence" id="animSentence"><span class="anim-cursor">|</span></div>
+        <div class="anim-candidates" id="animCandidates"></div>
+      </div>
+
+      <div class="grad-callout">
+        <p class="viz-label">Graduation</p>
+        <h3>You've completed AI Builder Foundations.</h3>
+        <p>As a graduate, here's <strong>[DISCOUNT]% off Level 1</strong>. That's where you build an AI system for your actual work, not just a course exercise.</p>
+        <!-- placeholder destination -- wire this to the real Level 1 enrollment URL and discount code before publishing -->
+        <a class="grad-cta" href="#" target="_blank" rel="noopener">See Level 1 and claim your discount</a>
+        <p class="grad-fine">Discount applies at checkout.</p>
+      </div>
+
       <div class="wrap-actions">
         <button class="btn-primary" id="completeBtn" type="button">Mark lesson complete</button>
         <span class="save-note" id="saveNote">Saved automatically on this device.</span>
-      </div>
-      <div class="next-lesson">
-        <strong>Next up:</strong> Lesson 2 covers images, voice, and video with AI. Same core idea, three new kinds of output.
       </div>
     </section>
   </main>
@@ -527,9 +545,7 @@
 
 <script>
 (function () {
-  var STORAGE_KEY = 'leland-lesson-aibp-l0-1-1';
-  // CONTENT: one short label per page, in order, matching the data-page panels below.
-  // Add/remove entries if you add/remove pages -- see references/page-patterns.md.
+  var STORAGE_KEY = 'leland-lesson-aibp-l0-5-2';
   var PAGE_TITLES = ['Welcome', 'Concept', 'Demo', 'Check', 'Step 1', 'Step 2', 'Step 3', 'Wrap up'];
   var LAST_PAGE = PAGE_TITLES.length - 1;
   var TRACK_IDS = ['step-1', 'step-2', 'step-3'];
@@ -643,28 +659,23 @@
   function activateAnimForPage(i) {
     conceptGen++;
     workflowGen++;
-    if (i === 1) runConceptAnim(conceptGen);
+    if (i === 7) runConceptAnim(conceptGen);
     if (i === 5) runWorkflowAnim(workflowGen);
   }
 
   async function runConceptAnim(myGen) {
-    // CONTENT: replace WORDS with a short sentence stating THIS lesson's concept in one line,
-    // broken into { word, distractors } steps. Only needed if page 2 keeps the .viz-card animation --
-    // delete this whole function and its call in activateAnimForPage() if that page doesn't use it.
     var sentenceEl = document.getElementById('animSentence');
     var candEl = document.getElementById('animCandidates');
     if (!sentenceEl || !candEl) return;
     var WORDS = [
-      { word: 'It', distractors: ['She', 'We'] },
-      { word: 'predicts', distractors: ['searches', 'remembers'] },
+      { word: 'Five', distractors: ['Two', 'Ten'] },
+      { word: 'lessons', distractors: ['weekends', 'meetings'] },
+      { word: 'done.', distractors: ['left.', 'soon.'] },
+      { word: 'Time', distractors: ['Chance', 'Way'] },
+      { word: 'to', distractors: ['for', 'and'] },
+      { word: 'build', distractors: ['skip', 'forget'] },
       { word: 'the', distractors: ['a', 'your'] },
-      { word: 'next', distractors: ['random', 'best'] },
-      { word: 'word,', distractors: ['fact,', 'answer,'] },
-      { word: 'one', distractors: ['every', 'no'] },
-      { word: 'word', distractors: ['page', 'topic'] },
-      { word: 'at', distractors: ['near', 'past'] },
-      { word: 'a', distractors: ['the', 'each'] },
-      { word: 'time.', distractors: ['once.', 'glance.'] }
+      { word: 'habit.', distractors: ['excuse.', 'pause.'] }
     ];
 
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -804,64 +815,25 @@
     });
   });
 
-  // CONTENT: this whole block (DEMO_TABLE / GENERIC_BY_LAST_WORD / FALLBACK / predict() / runDemo())
-  // is the page-3 example demo -- next-word prediction. If your lesson's demo is a different mechanic,
-  // replace predict() and runDemo() with your own logic; keep the same #demoInput/#demoBtn/#demoResults
-  // ids so the existing CSS and event wiring keep working. Delete this block and page 3 entirely if the
-  // lesson doesn't have a hands-on demo.
-  var DEMO_TABLE = {
-    'the best way to learn is to': [['practice', 34], ['try', 22], ['build', 19], ['ask', 13], ['read', 12]],
-    'i think ai is': [['exciting', 28], ['powerful', 24], ['useful', 20], ['changing', 16], ['overrated', 12]],
-    'the future of work will': [['change', 31], ['depend', 23], ['require', 20], ['evolve', 15], ['shrink', 11]],
-    'once upon a': [['time', 71], ['dream', 12], ['midnight', 9], ['star', 5], ['hill', 3]]
-  };
-  var GENERIC_BY_LAST_WORD = {
-    'to': [['learn', 26], ['build', 22], ['understand', 18], ['create', 17], ['improve', 17]],
-    'is': [['important', 24], ['useful', 22], ['different', 20], ['changing', 18], ['complex', 16]],
-    'a': [['good', 26], ['great', 21], ['new', 20], ['simple', 17], ['common', 16]],
-    'the': [['best', 24], ['first', 21], ['most', 20], ['same', 18], ['whole', 17]],
-    'and': [['then', 26], ['also', 22], ['finally', 20], ['yet', 17], ['still', 15]]
-  };
-  var FALLBACK = [['it', 24], ['this', 21], ['that', 19], ['the', 18], ['a', 18]];
-
-  function normalize(s) { return s.trim().toLowerCase().replace(/[^\w\s]/g, ''); }
-  function predict(text) {
-    var norm = normalize(text);
-    if (!norm) return FALLBACK;
-    if (DEMO_TABLE[norm]) return DEMO_TABLE[norm];
-    var words = norm.split(/\s+/);
-    var last = words[words.length - 1];
-    if (GENERIC_BY_LAST_WORD[last]) return GENERIC_BY_LAST_WORD[last];
-    var seed = (norm.length * 7) % FALLBACK.length;
-    return FALLBACK.slice(seed).concat(FALLBACK.slice(0, seed));
-  }
-
-  document.getElementById('demoBtn').addEventListener('click', runDemo);
-  document.getElementById('demoInput').addEventListener('keydown', function (e) {
-    if (e.key === 'Enter') runDemo();
-  });
-  function runDemo() {
-    var input = document.getElementById('demoInput');
-    var results = predict(input.value);
-    var container = document.getElementById('demoResults');
-    container.innerHTML = '';
-    results.forEach(function (pair) {
+  // Page-3 demo: a lightweight, click-through gallery of what past learners posted.
+  document.querySelectorAll('.gallery-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var container = document.getElementById('demoResults');
+      container.innerHTML = '';
       var row = document.createElement('div');
       row.className = 'demo-result-row';
-      row.innerHTML =
-        '<span class="demo-word">' + pair[0] + '</span>' +
-        '<span class="demo-bar-track"><span class="demo-bar-fill" style="width:' + pair[1] + '%"></span></span>' +
-        '<span class="demo-pct">' + pair[1] + '%</span>';
+      row.style.fontFamily = 'var(--font-body)';
+      row.textContent = btn.dataset.desc;
       container.appendChild(row);
+      document.getElementById('demoHint').textContent =
+        'Your post doesn\'t need to be impressive. It just needs to be real.';
+      if (!state.demoTried) {
+        state.demoTried = true;
+        persist();
+        renderChrome();
+      }
     });
-    document.getElementById('demoHint').textContent =
-      'A real model ranks tens of thousands of candidate words this way, every single word it writes.';
-    if (!state.demoTried) {
-      state.demoTried = true;
-      persist();
-      renderChrome();
-    }
-  }
+  });
 
   document.querySelectorAll('.copy-btn').forEach(function (btn) {
     btn.addEventListener('click', function () {

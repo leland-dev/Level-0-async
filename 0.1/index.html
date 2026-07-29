@@ -1,5 +1,5 @@
 <meta charset="utf-8">
-<title>How AI Thinks, Then Build a Document · Lesson 1</title>
+<title>Get an AI Account · Lesson 0</title>
 <link rel="icon" type="image/svg+xml" href="https://lebrain.joinleland.com/files/leland-icon-black">
 <style>
   @font-face {
@@ -345,7 +345,7 @@
         <img class="logo-light" src="https://lebrain.joinleland.com/files/leland-wordmark-black" alt="" />
         <img class="logo-dark" src="https://lebrain.joinleland.com/files/leland-wordmark-white" alt="" />
       </div>
-      <div class="crumbs">AI Builder Foundations · Lesson 1 of 6</div>
+      <div class="crumbs">AI Builder Foundations · Lesson 0 of 6</div>
     </div>
     <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
     <div class="progress-label" id="progressLabel">Step 1 of 8 · Welcome</div>
@@ -356,47 +356,48 @@
   <main>
     <!-- Page 1: Welcome -->
     <section class="panel" data-page="0">
-      <p class="eyebrow">Lesson 1 · How AI Thinks, Then Build</p>
-      <h1>Learn how AI predicts text, then put it to work on a real document.</h1>
+      <p class="eyebrow">Lesson 0 · Get an AI Account</p>
+      <h1>One thing stands between you and everything below.</h1>
       <p class="viz-label" style="margin-top: 28px;">What you'll learn</p>
       <ul class="callout-list">
-        <li>How a large language model actually generates an answer, one word at a time</li>
-        <li>What that prediction looks like happening live, in a simple demo you control</li>
-        <li>How to write a prompt that turns into a real, working document</li>
+        <li>The three mainstream AI tools and how they actually differ</li>
+        <li>How to pick one without overthinking it</li>
+        <li>How to get an account set up and send your first message</li>
       </ul>
     </section>
 
     <!-- Page 2: Concept -->
     <section class="panel" data-page="1">
       <p class="eyebrow">Concept</p>
-      <h2>What a chatbot is actually doing</h2>
-      <h3 style="margin-bottom: 14px;">It predicts the next word. It doesn't look anything up.</h3>
-      <p>It's trained on a huge amount of text, and learned which word tends to come next given everything before it. Every reply, including this sentence, gets built one predicted word at a time.</p>
+      <h2>Claude, ChatGPT, or Gemini</h2>
+      <h3 style="margin-bottom: 14px;">All three can chat, write, and answer questions. Each one is just better at different things.</h3>
+      <p>Anthropic, OpenAI, and Google each ship a version of the same basic idea. The differences show up in what each one is best at and where it fits into the rest of your day.</p>
 
       <div class="viz-card">
-        <p class="viz-label">Watch a sentence get built, one predicted word at a time</p>
+        <p class="viz-label">The short version</p>
         <div class="anim-sentence" id="animSentence"><span class="anim-cursor">|</span></div>
         <div class="anim-candidates" id="animCandidates"></div>
       </div>
 
       <ul class="callout-list">
-        <li>It has no memory between chats unless you tell it again</li>
-        <li>Because it's predicting rather than fact-checking, it can sound confident and still be wrong</li>
-        <li>The more specific your prompt, the better its predictions get</li>
+        <li>Claude (Anthropic): generally strong at long, careful writing and reasoning through nuanced questions</li>
+        <li>ChatGPT (OpenAI): the largest ecosystem, with the most plugins, custom GPTs, and third-party tools built around it</li>
+        <li>Gemini (Google): built into Gmail, Docs, and Search, so it shows up right where you already work if you're on Google</li>
       </ul>
     </section>
 
     <!-- Page 3: Demo -->
     <section class="panel" data-page="2">
       <p class="eyebrow">Interactive demo</p>
-      <h2>Try it yourself</h2>
-      <p>Type the start of a sentence and press Predict to see the next word ranked by likelihood, the same way a real model does it before it writes anything.</p>
+      <h2>Click each tool to compare</h2>
+      <p>Click all three names below. Each one swaps in its own one-line differentiator.</p>
       <div class="demo-card">
-        <h3>Next-word predictor</h3>
-        <p class="demo-caption">Try: "the best way to learn is to" (or write your own)</p>
+        <h3>Claude vs. ChatGPT vs. Gemini</h3>
+        <p class="demo-caption">Click a name to see how it's different</p>
         <div class="demo-row">
-          <input id="demoInput" type="text" placeholder="Start a sentence…" />
-          <button class="btn-primary" id="demoBtn" type="button">Predict</button>
+          <button class="btn-secondary tool-btn" data-tool="claude" type="button">Claude</button>
+          <button class="btn-secondary tool-btn" data-tool="chatgpt" type="button">ChatGPT</button>
+          <button class="btn-secondary tool-btn" data-tool="gemini" type="button">Gemini</button>
         </div>
         <div class="demo-results" id="demoResults"></div>
         <p class="demo-hint" id="demoHint"></p>
@@ -408,90 +409,92 @@
       <p class="eyebrow">Quick check</p>
       <h2>Before you move on...</h2>
       <span class="quiz-badge">Quiz · 1 question</span>
-      <p class="q">When you ask a chatbot a question, what is it actually doing to generate the answer?</p>
+      <p class="q">Which of these is true about how Claude, ChatGPT, and Gemini differ?</p>
       <div class="quiz" id="quiz">
-        <button type="button" data-correct="false" data-explain="Most chatbots aren't browsing the live web by default. It's generating a reply word by word from what it learned during training, not fetching a fresh page.">Searching the internet in real time</button>
-        <button type="button" data-correct="true" data-explain="Right. It picks the single most probable next word given everything so far, then repeats that, one word at a time, until the reply is done.">Predicting the most likely next word, over and over</button>
-        <button type="button" data-correct="false" data-explain="There's no lookup table of correct answers behind it. That's exactly why it can state something wrong with total confidence: it's predicting, not retrieving.">Looking the answer up in a fixed database of facts</button>
+        <button type="button" data-correct="false" data-explain="Not true. All three are conversational: you can go back and forth across multiple messages with any of them.">Only one of them can hold a back-and-forth conversation</button>
+        <button type="button" data-correct="true" data-explain="Right. All three chat, write, and answer questions. Claude leans toward careful writing and reasoning, ChatGPT has the broadest plugin and integration ecosystem, and Gemini is built into Google's own apps.">They do the same basic job, but differ in strengths and integrations</button>
+        <button type="button" data-correct="false" data-explain="Not true. You can create accounts with more than one. Picking one to start with just gets you moving instead of stalling on the choice.">Once you pick one, you can never use the others</button>
       </div>
       <p class="quiz-feedback" id="quizFeedback"></p>
     </section>
 
     <!-- Page 5: Build setup -->
     <section class="panel" data-page="4">
-      <p class="eyebrow">Build 1 · Setup</p>
-      <h2>Get set up</h2>
-      <p>Open your AI tool of choice: claude.ai, chatgpt.com, or gemini.google.com. Pick any topic you actually want a real document about, your work, a hobby, something you're planning.</p>
-      <label class="step-done"><input type="checkbox" id="step-1" class="track"> Done, I've got a tool open and a topic in mind</label>
+      <p class="eyebrow">Build · Setup</p>
+      <h2>Pick a tool</h2>
+      <p>Claude is a solid default if you're not sure which to start with. Any of the three works fine for this course. Pick one and move to the next step.</p>
+      <label class="step-done"><input type="checkbox" id="step-1" class="track"> Done, I've picked a tool</label>
     </section>
 
     <!-- Page 6: Build document -->
     <section class="panel" data-page="5">
-      <p class="eyebrow">Build 1 · Prompt</p>
-      <h2>Build a real document</h2>
+      <p class="eyebrow">Build · First message</p>
+      <h2>Create your account, then say hello</h2>
+
+      <p>Go to your chosen tool and create a free account.</p>
+      <ul class="callout-list">
+        <li>Go to claude.ai, chatgpt.com, or gemini.google.com, whichever you picked</li>
+        <li>Click Sign up</li>
+        <li>Use your email, or continue with your Google account</li>
+        <li>Verify your email if it asks you to</li>
+        <li>You're in</li>
+      </ul>
 
       <div class="viz-card">
         <p class="viz-label">Here's exactly what you're about to do</p>
         <div class="wf-window">
           <div class="wf-window-bar"><span class="wf-dot"></span><span class="wf-dot"></span><span class="wf-dot"></span><span class="wf-window-title">Your AI tool</span></div>
           <div class="wf-body">
-            <div class="wf-bubble-user" id="wfBubble">Write a one-page overview of my topic, with a summary, key points, and a next step...</div>
+            <div class="wf-bubble-user" id="wfBubble">What can you help me with?</div>
             <div class="wf-typing" id="wfTyping"><span></span><span></span><span></span></div>
             <div class="wf-file" id="wfFile">
-              <div class="wf-file-icon">📄</div>
+              <div class="wf-file-icon">💬</div>
               <div>
-                <div class="wf-file-name">topic-overview.docx</div>
-                <div class="wf-file-sub">Ready to download</div>
+                <div class="wf-file-name">First reply</div>
+                <div class="wf-file-sub">Ready to read</div>
               </div>
-              <div class="wf-file-dl">Download</div>
+              <div class="wf-file-dl">See reply</div>
             </div>
           </div>
           <div class="wf-input-row">
             <div class="wf-clip" id="wfClip">📋</div>
             <div class="wf-input">
-              <span class="wf-input-ghost" id="wfInputGhost">Paste your prompt…</span>
-              <span class="wf-input-fill" id="wfInputFill">Write a one-page overview…</span>
+              <span class="wf-input-ghost" id="wfInputGhost">Paste your question…</span>
+              <span class="wf-input-fill" id="wfInputFill">What can you help me with?</span>
             </div>
             <div class="wf-send" id="wfSend">➤</div>
           </div>
         </div>
       </div>
 
-      <p>Copy the prompt below into your AI tool, swapping in your own topic.</p>
+      <p>Once you're signed in, copy this into the message box and send it. This is your first real message, nothing fancy required.</p>
       <div class="prompt-box">
-        <pre id="prompt1">Write a one-page overview of [your topic] for someone who knows nothing about it. Include: a 2-sentence summary, three key points with one sentence each, and one recommended next step. Keep it skimmable, short paragraphs and bullets. Format it as a document I can download.</pre>
-        <button class="copy-btn" data-copy="prompt1" type="button">Copy prompt</button>
+        <pre id="prompt1">What can you help me with?</pre>
+        <button class="copy-btn" data-copy="prompt1" type="button">Copy question</button>
       </div>
       <details class="why">
-        <summary>Why this prompt works</summary>
-        <p>Naming the exact sections (summary, three points, next step) is what turns a vague ask into a document with real structure, instead of one long paragraph.</p>
+        <summary>Why start here</summary>
+        <p>A broad, open question gets you a quick overview of what the tool can actually do, before you have a specific task in mind. You'll get a more useful, specific prompt later in this course.</p>
       </details>
-      <p>Download the file it gives you and open it. Skim it for anything that sounds off. Remember, it predicted this, it didn't verify it.</p>
+      <p>Read the reply. That's it. No need to check it for accuracy yet, just see how it responds.</p>
       <details class="troubleshoot">
-        <summary>🔧 Troubleshooting: it just printed the text in the chat</summary>
-        <p>Ask directly: "Turn that into a downloadable .docx." Most tools will produce the file on request even if they didn't the first time.</p>
+        <summary>🔧 Troubleshooting: it's asking for a phone number</summary>
+        <p>Some tools ask for phone verification for security. It's optional on some, required on others. If you'd rather not share a number, try one of the other two tools instead.</p>
       </details>
-      <p class="tie-back">Same idea as the concept page: the words in this document are the model's best predictions, not verified facts. Worth a skim before you trust it.</p>
-      <label class="step-done"><input type="checkbox" id="step-2" class="track"> Done</label>
+      <label class="step-done"><input type="checkbox" id="step-2" class="track"> Done, I made an account and sent my first message</label>
     </section>
 
     <!-- Page 7: Go further -->
     <section class="panel" data-page="6">
-      <p class="eyebrow">Build 1 · Stretch</p>
+      <p class="eyebrow">Build · Stretch</p>
       <h2>Go further (optional)</h2>
-      <p>Same topic, two more formats. See how far one idea stretches when you just change what you ask for.</p>
+      <p>Optional: create an account on a second tool and ask it the same question. Comparing two real replies teaches you more than reading about the differences ever will.</p>
       <details class="further">
-        <summary>⚡ Turn it into a spreadsheet</summary>
+        <summary>⚡ Try a second tool</summary>
+        <p>Sign up for whichever of the other two you didn't pick, then send it the same starter question.</p>
         <div class="prompt-box">
-          <pre id="prompt2">Turn this same topic into a spreadsheet: one row per key point, with columns for the point, why it matters, and a next action. Make it downloadable.</pre>
-          <button class="copy-btn" data-copy="prompt2" type="button">Copy prompt</button>
-        </div>
-      </details>
-      <details class="further">
-        <summary>⚡ Turn it into a slide outline</summary>
-        <div class="prompt-box">
-          <pre id="prompt3">Turn this same topic into a 3-slide outline: a title slide, one slide per key point, and a closing slide with the next step. Make it downloadable.</pre>
-          <button class="copy-btn" data-copy="prompt3" type="button">Copy prompt</button>
+          <pre id="prompt2">What can you help me with?</pre>
+          <button class="copy-btn" data-copy="prompt2" type="button">Copy question</button>
         </div>
       </details>
       <label class="step-done"><input type="checkbox" id="step-3" class="track"> Done, or skipping for now</label>
@@ -501,18 +504,18 @@
     <section class="panel" data-page="7">
       <p class="eyebrow">Wrap up</p>
       <h2>Nice work</h2>
-      <p>You saw how a model builds an answer one predicted word at a time, then used that same mechanic to produce a real document.</p>
+      <p>You picked a tool, made an account, and sent your first message.</p>
       <ul class="callout-list">
-        <li>It predicts the next word, it doesn't search or look things up</li>
-        <li>You watched that prediction happen live in the demo</li>
-        <li>You built a working prompt that turned into a real, reusable document</li>
+        <li>You compared Claude, ChatGPT, and Gemini</li>
+        <li>You picked one and created an account</li>
+        <li>You sent your first message and got a reply</li>
       </ul>
       <div class="wrap-actions">
         <button class="btn-primary" id="completeBtn" type="button">Mark lesson complete</button>
         <span class="save-note" id="saveNote">Saved automatically on this device.</span>
       </div>
       <div class="next-lesson">
-        <strong>Next up:</strong> Lesson 2 covers images, voice, and video with AI. Same core idea, three new kinds of output.
+        <strong>Next up:</strong> Lesson 1 starts now. You'll learn how AI actually thinks, then build a real document with it.
       </div>
     </section>
   </main>
@@ -527,9 +530,7 @@
 
 <script>
 (function () {
-  var STORAGE_KEY = 'leland-lesson-aibp-l0-1-1';
-  // CONTENT: one short label per page, in order, matching the data-page panels below.
-  // Add/remove entries if you add/remove pages -- see references/page-patterns.md.
+  var STORAGE_KEY = 'leland-lesson-aibp-l0-0-1';
   var PAGE_TITLES = ['Welcome', 'Concept', 'Demo', 'Check', 'Step 1', 'Step 2', 'Step 3', 'Wrap up'];
   var LAST_PAGE = PAGE_TITLES.length - 1;
   var TRACK_IDS = ['step-1', 'step-2', 'step-3'];
@@ -648,23 +649,18 @@
   }
 
   async function runConceptAnim(myGen) {
-    // CONTENT: replace WORDS with a short sentence stating THIS lesson's concept in one line,
-    // broken into { word, distractors } steps. Only needed if page 2 keeps the .viz-card animation --
-    // delete this whole function and its call in activateAnimForPage() if that page doesn't use it.
     var sentenceEl = document.getElementById('animSentence');
     var candEl = document.getElementById('animCandidates');
     if (!sentenceEl || !candEl) return;
     var WORDS = [
-      { word: 'It', distractors: ['She', 'We'] },
-      { word: 'predicts', distractors: ['searches', 'remembers'] },
-      { word: 'the', distractors: ['a', 'your'] },
-      { word: 'next', distractors: ['random', 'best'] },
-      { word: 'word,', distractors: ['fact,', 'answer,'] },
-      { word: 'one', distractors: ['every', 'no'] },
-      { word: 'word', distractors: ['page', 'topic'] },
-      { word: 'at', distractors: ['near', 'past'] },
-      { word: 'a', distractors: ['the', 'each'] },
-      { word: 'time.', distractors: ['once.', 'glance.'] }
+      { word: 'Three', distractors: ['Ten', 'Two'] },
+      { word: 'tools.', distractors: ['options.', 'apps.'] },
+      { word: 'One', distractors: ['Every', 'No'] },
+      { word: 'decision.', distractors: ['debate.', 'guess.'] },
+      { word: 'Pick', distractors: ['Skip', 'Wait'] },
+      { word: 'and', distractors: ['or', 'but'] },
+      { word: 'move', distractors: ['stall', 'stop'] },
+      { word: 'on.', distractors: ['back.', 'away.'] }
     ];
 
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -804,64 +800,32 @@
     });
   });
 
-  // CONTENT: this whole block (DEMO_TABLE / GENERIC_BY_LAST_WORD / FALLBACK / predict() / runDemo())
-  // is the page-3 example demo -- next-word prediction. If your lesson's demo is a different mechanic,
-  // replace predict() and runDemo() with your own logic; keep the same #demoInput/#demoBtn/#demoResults
-  // ids so the existing CSS and event wiring keep working. Delete this block and page 3 entirely if the
-  // lesson doesn't have a hands-on demo.
-  var DEMO_TABLE = {
-    'the best way to learn is to': [['practice', 34], ['try', 22], ['build', 19], ['ask', 13], ['read', 12]],
-    'i think ai is': [['exciting', 28], ['powerful', 24], ['useful', 20], ['changing', 16], ['overrated', 12]],
-    'the future of work will': [['change', 31], ['depend', 23], ['require', 20], ['evolve', 15], ['shrink', 11]],
-    'once upon a': [['time', 71], ['dream', 12], ['midnight', 9], ['star', 5], ['hill', 3]]
+  // Page-3 demo: click-to-compare. Clicking a tool name swaps in that tool's one-line differentiator.
+  var TOOL_INFO = {
+    claude: { name: 'Claude', by: 'Anthropic', line: 'Generally strong at long, careful writing and reasoning through nuanced questions.' },
+    chatgpt: { name: 'ChatGPT', by: 'OpenAI', line: 'The largest ecosystem: the most plugins, custom GPTs, and third-party tools built around it.' },
+    gemini: { name: 'Gemini', by: 'Google', line: 'Built into Gmail, Docs, and Search, so it shows up right where you already work.' }
   };
-  var GENERIC_BY_LAST_WORD = {
-    'to': [['learn', 26], ['build', 22], ['understand', 18], ['create', 17], ['improve', 17]],
-    'is': [['important', 24], ['useful', 22], ['different', 20], ['changing', 18], ['complex', 16]],
-    'a': [['good', 26], ['great', 21], ['new', 20], ['simple', 17], ['common', 16]],
-    'the': [['best', 24], ['first', 21], ['most', 20], ['same', 18], ['whole', 17]],
-    'and': [['then', 26], ['also', 22], ['finally', 20], ['yet', 17], ['still', 15]]
-  };
-  var FALLBACK = [['it', 24], ['this', 21], ['that', 19], ['the', 18], ['a', 18]];
-
-  function normalize(s) { return s.trim().toLowerCase().replace(/[^\w\s]/g, ''); }
-  function predict(text) {
-    var norm = normalize(text);
-    if (!norm) return FALLBACK;
-    if (DEMO_TABLE[norm]) return DEMO_TABLE[norm];
-    var words = norm.split(/\s+/);
-    var last = words[words.length - 1];
-    if (GENERIC_BY_LAST_WORD[last]) return GENERIC_BY_LAST_WORD[last];
-    var seed = (norm.length * 7) % FALLBACK.length;
-    return FALLBACK.slice(seed).concat(FALLBACK.slice(0, seed));
-  }
-
-  document.getElementById('demoBtn').addEventListener('click', runDemo);
-  document.getElementById('demoInput').addEventListener('keydown', function (e) {
-    if (e.key === 'Enter') runDemo();
-  });
-  function runDemo() {
-    var input = document.getElementById('demoInput');
-    var results = predict(input.value);
-    var container = document.getElementById('demoResults');
-    container.innerHTML = '';
-    results.forEach(function (pair) {
+  document.querySelectorAll('.tool-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var info = TOOL_INFO[btn.getAttribute('data-tool')];
+      var container = document.getElementById('demoResults');
+      container.innerHTML = '';
       var row = document.createElement('div');
       row.className = 'demo-result-row';
+      row.style.alignItems = 'flex-start';
       row.innerHTML =
-        '<span class="demo-word">' + pair[0] + '</span>' +
-        '<span class="demo-bar-track"><span class="demo-bar-fill" style="width:' + pair[1] + '%"></span></span>' +
-        '<span class="demo-pct">' + pair[1] + '%</span>';
+        '<span class="demo-word" style="width:auto;font-family:var(--font-body);font-weight:500;">' + info.name + '</span>' +
+        '<span style="color:var(--ink-soft);">' + info.line + '</span>';
       container.appendChild(row);
+      document.getElementById('demoHint').textContent = 'Made by ' + info.by + '.';
+      if (!state.demoTried) {
+        state.demoTried = true;
+        persist();
+        renderChrome();
+      }
     });
-    document.getElementById('demoHint').textContent =
-      'A real model ranks tens of thousands of candidate words this way, every single word it writes.';
-    if (!state.demoTried) {
-      state.demoTried = true;
-      persist();
-      renderChrome();
-    }
-  }
+  });
 
   document.querySelectorAll('.copy-btn').forEach(function (btn) {
     btn.addEventListener('click', function () {

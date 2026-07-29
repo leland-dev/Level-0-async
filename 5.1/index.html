@@ -1,5 +1,5 @@
 <meta charset="utf-8">
-<title>How AI Thinks, Then Build a Document · Lesson 1</title>
+<title>Plan Your Day and Your List · Lesson 5</title>
 <link rel="icon" type="image/svg+xml" href="https://lebrain.joinleland.com/files/leland-icon-black">
 <style>
   @font-face {
@@ -272,6 +272,22 @@
   .demo-pct { width: 42px; text-align: right; color: var(--gray); font-variant-numeric: tabular-nums; font-size: 12.5px; }
   .demo-hint { margin-top: 14px; font-size: 12.5px; color: var(--gray); font-style: italic; }
 
+  /* demo page: calendar + to-do inputs, day-plan output */
+  .demo-two-col { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 4px; }
+  .demo-col { flex: 1 1 220px; }
+  .demo-col h4 {
+    font-family: var(--font-mono); font-size: 11.5px; color: var(--gray); text-transform: uppercase;
+    letter-spacing: 0.05em; margin: 0 0 8px; font-weight: 400;
+  }
+  .demo-col ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+  .demo-col li {
+    font-size: 13.5px; color: var(--ink-soft); background: var(--surface);
+    border: 1px solid var(--stroke); border-radius: 8px; padding: 8px 10px;
+  }
+  .plan-row { display: flex; gap: 12px; align-items: baseline; font-size: 13.5px; padding: 3px 0; }
+  .plan-time { font-family: var(--font-mono); color: var(--gray); width: 92px; flex-shrink: 0; font-size: 12.5px; }
+  .plan-task { color: var(--ink); }
+
   /* checkpoint quiz */
   .q { font-weight: 500; font-size: 16px; }
   .quiz { display: flex; flex-direction: column; gap: 8px; margin-top: 4px; }
@@ -328,6 +344,12 @@
     font-size: 14px; color: var(--ink-soft);
   }
   .next-lesson strong { color: var(--ink); }
+  .stretch-divider {
+    margin-top: 32px; padding: 18px 20px; border-radius: 14px;
+    background: var(--surface-raised); border: 1px dashed var(--stroke-strong);
+    font-size: 14px; color: var(--ink-soft);
+  }
+  .stretch-divider strong { color: var(--ink); }
 
   /* footer nav */
   footer.nav {
@@ -345,7 +367,7 @@
         <img class="logo-light" src="https://lebrain.joinleland.com/files/leland-wordmark-black" alt="" />
         <img class="logo-dark" src="https://lebrain.joinleland.com/files/leland-wordmark-white" alt="" />
       </div>
-      <div class="crumbs">AI Builder Foundations · Lesson 1 of 6</div>
+      <div class="crumbs">AI Builder Foundations · Lesson 5 of 6</div>
     </div>
     <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
     <div class="progress-label" id="progressLabel">Step 1 of 8 · Welcome</div>
@@ -356,47 +378,67 @@
   <main>
     <!-- Page 1: Welcome -->
     <section class="panel" data-page="0">
-      <p class="eyebrow">Lesson 1 · How AI Thinks, Then Build</p>
-      <h1>Learn how AI predicts text, then put it to work on a real document.</h1>
+      <p class="eyebrow">Lesson 5 · Plan Your Day and Your List</p>
+      <h1>AI can act as a real scheduling and prioritization assistant, not just a chatbot.</h1>
       <p class="viz-label" style="margin-top: 28px;">What you'll learn</p>
       <ul class="callout-list">
-        <li>How a large language model actually generates an answer, one word at a time</li>
-        <li>What that prediction looks like happening live, in a simple demo you control</li>
-        <li>How to write a prompt that turns into a real, working document</li>
+        <li>How to connect a calendar to your AI tool, or work around it with a screenshot</li>
+        <li>How to turn your schedule and your task list into a real plan for the day</li>
+        <li>How to use voice mode to sort a messy to-do list out loud</li>
       </ul>
     </section>
 
     <!-- Page 2: Concept -->
     <section class="panel" data-page="1">
       <p class="eyebrow">Concept</p>
-      <h2>What a chatbot is actually doing</h2>
-      <h3 style="margin-bottom: 14px;">It predicts the next word. It doesn't look anything up.</h3>
-      <p>It's trained on a huge amount of text, and learned which word tends to come next given everything before it. Every reply, including this sentence, gets built one predicted word at a time.</p>
+      <h2>Three ways AI acts like an assistant</h2>
 
-      <div class="viz-card">
-        <p class="viz-label">Watch a sentence get built, one predicted word at a time</p>
-        <div class="anim-sentence" id="animSentence"><span class="anim-cursor">|</span></div>
-        <div class="anim-candidates" id="animCandidates"></div>
-      </div>
+      <h3 style="margin-bottom: 8px;">Connectors: give AI your real data</h3>
+      <p>A connector is a live, permissioned link between your AI tool and one of your other apps, like your calendar. Once it's connected, AI sees your actual meetings and free time instead of you retyping your schedule every time you ask for help.</p>
+
+      <h3 style="margin: 22px 0 8px;">Day planning: let AI do the admin</h3>
+      <p>AI can turn a schedule and a task list into an actual plan for the day, not just a summary of both. You hand it the raw material, meetings and to-dos, and it does the scheduling work: deciding what fits where and what has to wait.</p>
+
+      <h3 style="margin: 22px 0 8px;">Voice: think out loud instead of typing</h3>
+      <p>Voice mode lets you talk through a messy to-do list the way it actually sits in your head, instead of typing it out in order. You say the list as it comes to you, and AI sorts and prioritizes it after, with reasoning included.</p>
 
       <ul class="callout-list">
-        <li>It has no memory between chats unless you tell it again</li>
-        <li>Because it's predicting rather than fact-checking, it can sound confident and still be wrong</li>
-        <li>The more specific your prompt, the better its predictions get</li>
+        <li>Connecting a calendar always asks for your permission first, and you can revoke it any time</li>
+        <li>A day plan is only as good as the priorities and constraints you actually give it</li>
+        <li>Voice mode works best when you just talk. Rambling and correcting yourself out loud is fine</li>
       </ul>
     </section>
 
     <!-- Page 3: Demo -->
     <section class="panel" data-page="2">
       <p class="eyebrow">Interactive demo</p>
-      <h2>Try it yourself</h2>
-      <p>Type the start of a sentence and press Predict to see the next word ranked by likelihood, the same way a real model does it before it writes anything.</p>
+      <h2>Watch a schedule become a day plan</h2>
+      <p>Here's an example calendar and to-do list for one Tuesday. Click the button to see what an AI-produced day plan looks like once it has both.</p>
       <div class="demo-card">
-        <h3>Next-word predictor</h3>
-        <p class="demo-caption">Try: "the best way to learn is to" (or write your own)</p>
-        <div class="demo-row">
-          <input id="demoInput" type="text" placeholder="Start a sentence…" />
-          <button class="btn-primary" id="demoBtn" type="button">Predict</button>
+        <h3>Example inputs</h3>
+        <p class="demo-caption">Three fixed meetings, five things on the to-do list</p>
+        <div class="demo-two-col">
+          <div class="demo-col">
+            <h4>Today's calendar</h4>
+            <ul>
+              <li>9:00–9:30, Team standup</li>
+              <li>11:00–12:00, Client call, Acme account</li>
+              <li>3:00–4:00, 1:1 with manager</li>
+            </ul>
+          </div>
+          <div class="demo-col">
+            <h4>To-do list</h4>
+            <ul>
+              <li>Finish the Q3 budget draft</li>
+              <li>Reply to Jordan's email about the proposal</li>
+              <li>Review Sam's pull request</li>
+              <li>Book flight for next week's conference</li>
+              <li>Pick up dry cleaning</li>
+            </ul>
+          </div>
+        </div>
+        <div class="demo-row" style="margin-top: 18px;">
+          <button class="btn-primary" id="demoBtn" type="button">Generate day plan</button>
         </div>
         <div class="demo-results" id="demoResults"></div>
         <p class="demo-hint" id="demoHint"></p>
@@ -408,111 +450,117 @@
       <p class="eyebrow">Quick check</p>
       <h2>Before you move on...</h2>
       <span class="quiz-badge">Quiz · 1 question</span>
-      <p class="q">When you ask a chatbot a question, what is it actually doing to generate the answer?</p>
+      <p class="q">You ask AI to plan your day. Which prompt is specific enough to get back a plan you can actually use?</p>
       <div class="quiz" id="quiz">
-        <button type="button" data-correct="false" data-explain="Most chatbots aren't browsing the live web by default. It's generating a reply word by word from what it learned during training, not fetching a fresh page.">Searching the internet in real time</button>
-        <button type="button" data-correct="true" data-explain="Right. It picks the single most probable next word given everything so far, then repeats that, one word at a time, until the reply is done.">Predicting the most likely next word, over and over</button>
-        <button type="button" data-correct="false" data-explain="There's no lookup table of correct answers behind it. That's exactly why it can state something wrong with total confidence: it's predicting, not retrieving.">Looking the answer up in a fixed database of facts</button>
+        <button type="button" data-correct="false" data-explain="This gives AI nothing to work with. No priorities, no time blocks, no fixed meetings to plan around. It has to guess, and a guessed plan isn't a schedule you can trust.">"Plan my day."</button>
+        <button type="button" data-correct="true" data-explain="Right. This names a priority (the budget draft), a fixed constraint (existing meetings), and how big the time blocks should be. That's what turns a request into an actual plan instead of a guess.">"Here's my calendar and to-do list. Block my day around my meetings, put the Q3 budget draft in my first open 90-minute block, and leave 15 minutes before my 1:1."</button>
+        <button type="button" data-correct="false" data-explain="This asks for one next step, not a full plan. It skips the calendar entirely, so AI has no fixed meetings to build around and no sense of how much time is actually free.">"What should I do first today?"</button>
       </div>
       <p class="quiz-feedback" id="quizFeedback"></p>
     </section>
 
     <!-- Page 5: Build setup -->
     <section class="panel" data-page="4">
-      <p class="eyebrow">Build 1 · Setup</p>
-      <h2>Get set up</h2>
-      <p>Open your AI tool of choice: claude.ai, chatgpt.com, or gemini.google.com. Pick any topic you actually want a real document about, your work, a hobby, something you're planning.</p>
-      <label class="step-done"><input type="checkbox" id="step-1" class="track"> Done, I've got a tool open and a topic in mind</label>
+      <p class="eyebrow">Build 1 · Connectors</p>
+      <h2>Connect your calendar</h2>
+      <p>Most AI tools now support connectors: a permissioned link to your calendar (Google Calendar, Outlook) so the AI can see your actual schedule instead of you typing it in every time. Look in your AI tool's settings for "Connectors," "Integrations," or "Connected apps," and connect your calendar there.</p>
+      <p>Don't want to link a live account? That's fine. Take a screenshot of your calendar for today or this week instead. You'll paste that into your prompt in the next step.</p>
+      <label class="step-done"><input type="checkbox" id="step-1" class="track"> Done, calendar connected or screenshot ready</label>
     </section>
 
     <!-- Page 6: Build document -->
     <section class="panel" data-page="5">
-      <p class="eyebrow">Build 1 · Prompt</p>
-      <h2>Build a real document</h2>
+      <p class="eyebrow">Build 2 · Day planning</p>
+      <h2>Turn your schedule into a real plan</h2>
 
       <div class="viz-card">
         <p class="viz-label">Here's exactly what you're about to do</p>
         <div class="wf-window">
           <div class="wf-window-bar"><span class="wf-dot"></span><span class="wf-dot"></span><span class="wf-dot"></span><span class="wf-window-title">Your AI tool</span></div>
           <div class="wf-body">
-            <div class="wf-bubble-user" id="wfBubble">Write a one-page overview of my topic, with a summary, key points, and a next step...</div>
+            <div class="wf-bubble-user" id="wfBubble">Here's my calendar and to-do list. Block my day around my meetings, and put my top priority first...</div>
             <div class="wf-typing" id="wfTyping"><span></span><span></span><span></span></div>
             <div class="wf-file" id="wfFile">
-              <div class="wf-file-icon">📄</div>
+              <div class="wf-file-icon">🗓️</div>
               <div>
-                <div class="wf-file-name">topic-overview.docx</div>
-                <div class="wf-file-sub">Ready to download</div>
+                <div class="wf-file-name">todays-day-plan.txt</div>
+                <div class="wf-file-sub">Ready to review</div>
               </div>
-              <div class="wf-file-dl">Download</div>
+              <div class="wf-file-dl">View plan</div>
             </div>
           </div>
           <div class="wf-input-row">
             <div class="wf-clip" id="wfClip">📋</div>
             <div class="wf-input">
               <span class="wf-input-ghost" id="wfInputGhost">Paste your prompt…</span>
-              <span class="wf-input-fill" id="wfInputFill">Write a one-page overview…</span>
+              <span class="wf-input-fill" id="wfInputFill">Here's my calendar and to-do list…</span>
             </div>
             <div class="wf-send" id="wfSend">➤</div>
           </div>
         </div>
       </div>
 
-      <p>Copy the prompt below into your AI tool, swapping in your own topic.</p>
+      <p>Share your calendar (paste the screenshot, or point to the connector you set up) and your to-do list. Then copy the prompt below, swapping in your own priorities.</p>
       <div class="prompt-box">
-        <pre id="prompt1">Write a one-page overview of [your topic] for someone who knows nothing about it. Include: a 2-sentence summary, three key points with one sentence each, and one recommended next step. Keep it skimmable, short paragraphs and bullets. Format it as a document I can download.</pre>
+        <pre id="prompt1">Here's my calendar for today and my to-do list: [paste your calendar screenshot or list, and your to-do list]. Plan my day around my fixed meetings. Put [name your top-priority task] in my first open block of at least 90 minutes, and leave a 15-minute buffer before and after each meeting. Give me the plan as time blocks, not just a reordered list.</pre>
         <button class="copy-btn" data-copy="prompt1" type="button">Copy prompt</button>
       </div>
       <details class="why">
         <summary>Why this prompt works</summary>
-        <p>Naming the exact sections (summary, three points, next step) is what turns a vague ask into a document with real structure, instead of one long paragraph.</p>
+        <p>Naming your top priority, the size of block it needs, and the buffer around meetings gives AI real constraints to plan around. Without those, it just guesses at what matters and when you're actually free.</p>
       </details>
-      <p>Download the file it gives you and open it. Skim it for anything that sounds off. Remember, it predicted this, it didn't verify it.</p>
+      <p>You should get back a plan broken into time blocks, not a vague list. Check it against your actual calendar. Fixed meetings should land exactly where they already are.</p>
       <details class="troubleshoot">
-        <summary>🔧 Troubleshooting: it just printed the text in the chat</summary>
-        <p>Ask directly: "Turn that into a downloadable .docx." Most tools will produce the file on request even if they didn't the first time.</p>
+        <summary>🔧 Troubleshooting: it just reordered your to-do list</summary>
+        <p>Ask directly: "Give me actual times for each block, not just an order." Most tools will restructure once you ask for time blocks specifically.</p>
       </details>
-      <p class="tie-back">Same idea as the concept page: the words in this document are the model's best predictions, not verified facts. Worth a skim before you trust it.</p>
-      <label class="step-done"><input type="checkbox" id="step-2" class="track"> Done</label>
+      <label class="step-done"><input type="checkbox" id="step-2" class="track"> Done, I have a real day plan</label>
     </section>
 
     <!-- Page 7: Go further -->
     <section class="panel" data-page="6">
-      <p class="eyebrow">Build 1 · Stretch</p>
-      <h2>Go further (optional)</h2>
-      <p>Same topic, two more formats. See how far one idea stretches when you just change what you ask for.</p>
-      <details class="further">
-        <summary>⚡ Turn it into a spreadsheet</summary>
-        <div class="prompt-box">
-          <pre id="prompt2">Turn this same topic into a spreadsheet: one row per key point, with columns for the point, why it matters, and a next action. Make it downloadable.</pre>
-          <button class="copy-btn" data-copy="prompt2" type="button">Copy prompt</button>
-        </div>
+      <p class="eyebrow">Build 3 · Say your list out loud</p>
+      <h2>Sort your to-do list with voice</h2>
+      <p>Open voice mode in your AI tool. Talk through your real to-do list exactly as it sits in your head: out of order, half-finished thoughts included. Don't clean it up first, that's the AI's job.</p>
+      <p>When you're done talking, ask it directly:</p>
+      <div class="prompt-box">
+        <pre id="prompt2">Now prioritize everything I just said. Tell me what to do first and why, not just a reordered list.</pre>
+        <button class="copy-btn" data-copy="prompt2" type="button">Copy prompt</button>
+      </div>
+      <details class="why">
+        <summary>Why say it instead of type it</summary>
+        <p>Talking is faster than typing for a messy list, and it doesn't force you to organize your thoughts before you've even said them. Asking for reasoning, not just an order, is what makes the result something you'd actually trust and act on.</p>
       </details>
-      <details class="further">
-        <summary>⚡ Turn it into a slide outline</summary>
+      <label class="step-done"><input type="checkbox" id="step-3" class="track"> Done, I said my list out loud and got it prioritized</label>
+
+      <div class="stretch-divider">
+        <strong>Go further (optional):</strong> replan around a disruption. Something always changes.
+      </div>
+      <details class="further" style="margin-top: 16px;">
+        <summary>⚡ Replan around a surprise meeting</summary>
         <div class="prompt-box">
-          <pre id="prompt3">Turn this same topic into a 3-slide outline: a title slide, one slide per key point, and a closing slide with the next step. Make it downloadable.</pre>
+          <pre id="prompt3">A 2-hour meeting just got added at 1pm today. Replan my day around it. Keep my top priority task in the schedule somewhere, even if it has to move.</pre>
           <button class="copy-btn" data-copy="prompt3" type="button">Copy prompt</button>
         </div>
       </details>
-      <label class="step-done"><input type="checkbox" id="step-3" class="track"> Done, or skipping for now</label>
     </section>
 
     <!-- Page 8: Wrap up -->
     <section class="panel" data-page="7">
       <p class="eyebrow">Wrap up</p>
       <h2>Nice work</h2>
-      <p>You saw how a model builds an answer one predicted word at a time, then used that same mechanic to produce a real document.</p>
+      <p>You turned a calendar and a to-do list into a real plan, then handled the two things that mess up any plan: a messy list and a surprise.</p>
       <ul class="callout-list">
-        <li>It predicts the next word, it doesn't search or look things up</li>
-        <li>You watched that prediction happen live in the demo</li>
-        <li>You built a working prompt that turned into a real, reusable document</li>
+        <li>Connected a calendar, or worked around it with a screenshot</li>
+        <li>Built a real day plan with priorities and time blocks named explicitly</li>
+        <li>Prioritized your to-do list out loud using voice mode</li>
       </ul>
       <div class="wrap-actions">
         <button class="btn-primary" id="completeBtn" type="button">Mark lesson complete</button>
         <span class="save-note" id="saveNote">Saved automatically on this device.</span>
       </div>
       <div class="next-lesson">
-        <strong>Next up:</strong> Lesson 2 covers images, voice, and video with AI. Same core idea, three new kinds of output.
+        <strong>Next up:</strong> Lesson 6: using AI responsibly, permissions, data, and honesty.
       </div>
     </section>
   </main>
@@ -527,10 +575,8 @@
 
 <script>
 (function () {
-  var STORAGE_KEY = 'leland-lesson-aibp-l0-1-1';
-  // CONTENT: one short label per page, in order, matching the data-page panels below.
-  // Add/remove entries if you add/remove pages -- see references/page-patterns.md.
-  var PAGE_TITLES = ['Welcome', 'Concept', 'Demo', 'Check', 'Step 1', 'Step 2', 'Step 3', 'Wrap up'];
+  var STORAGE_KEY = 'leland-lesson-aibp-l0-5-1';
+  var PAGE_TITLES = ['Welcome', 'Concept', 'Demo', 'Check', 'Connectors', 'Day plan', 'Voice + stretch', 'Wrap up'];
   var LAST_PAGE = PAGE_TITLES.length - 1;
   var TRACK_IDS = ['step-1', 'step-2', 'step-3'];
 
@@ -637,81 +683,11 @@
 
   function sleep(ms) { return new Promise(function (r) { setTimeout(r, ms); }); }
 
-  var conceptGen = 0;
   var workflowGen = 0;
 
   function activateAnimForPage(i) {
-    conceptGen++;
     workflowGen++;
-    if (i === 1) runConceptAnim(conceptGen);
     if (i === 5) runWorkflowAnim(workflowGen);
-  }
-
-  async function runConceptAnim(myGen) {
-    // CONTENT: replace WORDS with a short sentence stating THIS lesson's concept in one line,
-    // broken into { word, distractors } steps. Only needed if page 2 keeps the .viz-card animation --
-    // delete this whole function and its call in activateAnimForPage() if that page doesn't use it.
-    var sentenceEl = document.getElementById('animSentence');
-    var candEl = document.getElementById('animCandidates');
-    if (!sentenceEl || !candEl) return;
-    var WORDS = [
-      { word: 'It', distractors: ['She', 'We'] },
-      { word: 'predicts', distractors: ['searches', 'remembers'] },
-      { word: 'the', distractors: ['a', 'your'] },
-      { word: 'next', distractors: ['random', 'best'] },
-      { word: 'word,', distractors: ['fact,', 'answer,'] },
-      { word: 'one', distractors: ['every', 'no'] },
-      { word: 'word', distractors: ['page', 'topic'] },
-      { word: 'at', distractors: ['near', 'past'] },
-      { word: 'a', distractors: ['the', 'each'] },
-      { word: 'time.', distractors: ['once.', 'glance.'] }
-    ];
-
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      sentenceEl.innerHTML = WORDS.map(function (w) {
-        return '<span class="anim-word" style="opacity:1;transform:none">' + w.word + '</span>';
-      }).join(' ');
-      candEl.innerHTML = '';
-      return;
-    }
-
-    while (conceptGen === myGen) {
-      sentenceEl.innerHTML = '<span class="anim-cursor">|</span>';
-      for (var i = 0; i < WORDS.length; i++) {
-        if (conceptGen !== myGen) return;
-        var entry = WORDS[i];
-        var choices = [entry.word].concat(entry.distractors);
-        choices.sort(function () { return Math.random() - 0.5; });
-        candEl.innerHTML = '';
-        var chipEls = choices.map(function (w) {
-          var c = document.createElement('div');
-          c.className = 'cand-chip';
-          c.textContent = w;
-          candEl.appendChild(c);
-          return c;
-        });
-        await sleep(30);
-        if (conceptGen !== myGen) return;
-        chipEls.forEach(function (c) { c.classList.add('show'); });
-        await sleep(600);
-        if (conceptGen !== myGen) return;
-        var winner = chipEls.filter(function (c) { return c.textContent === entry.word; })[0];
-        winner.classList.add('pick');
-        await sleep(400);
-        if (conceptGen !== myGen) return;
-        chipEls.forEach(function (c) { c.classList.add('fly'); });
-        var wordSpan = document.createElement('span');
-        wordSpan.className = 'anim-word';
-        wordSpan.textContent = entry.word;
-        var cursor = sentenceEl.querySelector('.anim-cursor');
-        sentenceEl.insertBefore(wordSpan, cursor);
-        await sleep(320);
-        if (conceptGen !== myGen) return;
-        candEl.innerHTML = '';
-        await sleep(220);
-      }
-      await sleep(1800);
-    }
   }
 
   async function runWorkflowAnim(myGen) {
@@ -804,58 +780,32 @@
     });
   });
 
-  // CONTENT: this whole block (DEMO_TABLE / GENERIC_BY_LAST_WORD / FALLBACK / predict() / runDemo())
-  // is the page-3 example demo -- next-word prediction. If your lesson's demo is a different mechanic,
-  // replace predict() and runDemo() with your own logic; keep the same #demoInput/#demoBtn/#demoResults
-  // ids so the existing CSS and event wiring keep working. Delete this block and page 3 entirely if the
-  // lesson doesn't have a hands-on demo.
-  var DEMO_TABLE = {
-    'the best way to learn is to': [['practice', 34], ['try', 22], ['build', 19], ['ask', 13], ['read', 12]],
-    'i think ai is': [['exciting', 28], ['powerful', 24], ['useful', 20], ['changing', 16], ['overrated', 12]],
-    'the future of work will': [['change', 31], ['depend', 23], ['require', 20], ['evolve', 15], ['shrink', 11]],
-    'once upon a': [['time', 71], ['dream', 12], ['midnight', 9], ['star', 5], ['hill', 3]]
-  };
-  var GENERIC_BY_LAST_WORD = {
-    'to': [['learn', 26], ['build', 22], ['understand', 18], ['create', 17], ['improve', 17]],
-    'is': [['important', 24], ['useful', 22], ['different', 20], ['changing', 18], ['complex', 16]],
-    'a': [['good', 26], ['great', 21], ['new', 20], ['simple', 17], ['common', 16]],
-    'the': [['best', 24], ['first', 21], ['most', 20], ['same', 18], ['whole', 17]],
-    'and': [['then', 26], ['also', 22], ['finally', 20], ['yet', 17], ['still', 15]]
-  };
-  var FALLBACK = [['it', 24], ['this', 21], ['that', 19], ['the', 18], ['a', 18]];
-
-  function normalize(s) { return s.trim().toLowerCase().replace(/[^\w\s]/g, ''); }
-  function predict(text) {
-    var norm = normalize(text);
-    if (!norm) return FALLBACK;
-    if (DEMO_TABLE[norm]) return DEMO_TABLE[norm];
-    var words = norm.split(/\s+/);
-    var last = words[words.length - 1];
-    if (GENERIC_BY_LAST_WORD[last]) return GENERIC_BY_LAST_WORD[last];
-    var seed = (norm.length * 7) % FALLBACK.length;
-    return FALLBACK.slice(seed).concat(FALLBACK.slice(0, seed));
-  }
+  // The page-3 demo: turn the example calendar + to-do list into an example AI day plan.
+  var DAY_PLAN = [
+    ['8:30–9:00', 'Quick prep: skim your Q3 budget notes before standup'],
+    ['9:00–9:30', 'Team standup (fixed)'],
+    ['9:30–11:00', 'Deep work: finish the Q3 budget draft, your biggest task, done before the client call'],
+    ['11:00–12:00', 'Client call, Acme account (fixed)'],
+    ['12:00–12:30', "Quick wins: reply to Jordan's email, review Sam's pull request"],
+    ['1:00–2:30', 'Continue the budget draft, then book your conference flight'],
+    ['3:00–4:00', '1:1 with manager (fixed)'],
+    ['4:00–4:15', 'Pick up dry cleaning on your way out']
+  ];
 
   document.getElementById('demoBtn').addEventListener('click', runDemo);
-  document.getElementById('demoInput').addEventListener('keydown', function (e) {
-    if (e.key === 'Enter') runDemo();
-  });
   function runDemo() {
-    var input = document.getElementById('demoInput');
-    var results = predict(input.value);
     var container = document.getElementById('demoResults');
     container.innerHTML = '';
-    results.forEach(function (pair) {
+    DAY_PLAN.forEach(function (pair) {
       var row = document.createElement('div');
-      row.className = 'demo-result-row';
+      row.className = 'plan-row';
       row.innerHTML =
-        '<span class="demo-word">' + pair[0] + '</span>' +
-        '<span class="demo-bar-track"><span class="demo-bar-fill" style="width:' + pair[1] + '%"></span></span>' +
-        '<span class="demo-pct">' + pair[1] + '%</span>';
+        '<span class="plan-time">' + pair[0] + '</span>' +
+        '<span class="plan-task">' + pair[1] + '</span>';
       container.appendChild(row);
     });
     document.getElementById('demoHint').textContent =
-      'A real model ranks tens of thousands of candidate words this way, every single word it writes.';
+      'A real day plan does this with your actual calendar and list, weighing priority and time available the same way.';
     if (!state.demoTried) {
       state.demoTried = true;
       persist();
